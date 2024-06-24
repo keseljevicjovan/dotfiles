@@ -1,0 +1,10 @@
+#! /bin/sh
+
+updates=$(checkupdates | wc -l)
+
+if [ "$updates" -gt 0 ]; then
+    echo " $updates updates"
+else
+    echo " no updates"
+fi
+

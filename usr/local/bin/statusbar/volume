@@ -1,0 +1,18 @@
+#!/bin/sh
+
+volstat="$(pactl list sinks)"
+
+if echo "$volstat" | grep -q "Mute: yes"; then
+    printf " muted\n"
+    exit
+fi
+
+vol=$(echo "$volstat" | grep -Po '[0-9]+(?=%)' | head -1)
+
+if [ "$vol" -gt 50 ]; then
+    icon=""
+else
+    icon=""
+fi
+
+printf "%s %s%%\n" "$icon" "$vol"
