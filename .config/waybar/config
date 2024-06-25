@@ -1,0 +1,96 @@
+{
+    "height": 24, // Waybar height (to be removed for auto height)
+    "margin-top": 3,
+    "margin-left": 10,
+    "margin-bottom": 0,
+    "margin-right": 10,
+    "spacing": 5, // Gaps between modules (4px)
+    "modules-left": [ "cpu", "memory"],
+    "modules-center": ["hyprland/workspaces"],
+    "modules-right": ["pulseaudio", "network",  "clock"],
+    "hyprland/workspaces": {
+      "format": "{icon}",
+      "on-click": "activate",
+      "format-icons": {
+        "1": "",
+        "2": "",
+        "3": "",
+        "4": "",
+        "5": "",
+        "5": "",
+        "6": "",
+        "7": "",
+        "8": "",
+        "9": "",
+        "0": "",
+        "urgent": "",
+        "active": "",
+        "default": ""
+      }
+    },
+    "hyprland/window": {
+        "format": "{}"
+    },
+    "tray": {
+        "spacing": 10
+    },
+    "clock": {
+        "format": "<span color='#bf616a'> </span>{:%I:%M %p}",
+        "format-alt": "<span color='#bf616a'> </span>{:%a %b %d}",
+        "tooltip-format": "<big>{:%B %Y}</big>\n<tt><small>{calendar}</small></tt>",
+    },
+
+    "cpu": {
+      "interval": 1,
+      "format": " {usage}%",
+      "max-length": 100,
+      "on-click": "",
+    },
+    "gpu": {
+      "interval": 1,
+      "format": " {usage}%",
+      "max-length": 100,
+      "on-click": "",
+    },
+    "memory": {
+        "interval": 30,
+        "format": " {}%",
+        "format-alt":"< {used:0.1f}G",
+        "max-length": 10,
+    },
+    "backlight": {
+        "device": "DP-1",
+        "format": "{icon} {percent}%",
+        "format-icons": ["", "", "", "", "", "", "", "", ""],
+        "on-click": "",
+    },
+    "network": {
+        "format-wifi": "直 {signalStrength}%",
+        "format-ethernet": "直  connected",
+        "format-disconnected": "睊",
+    },
+
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "format-bluetooth": "  {volume}%",
+        "format-bluetooth-muted": "婢 ",
+        "format-muted": "婢",
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        },
+        "on-click": "pavucontrol"
+    },
+
+    "bluetooth": {
+        "format": " {status}",
+    },
+
+ 
+}
+
