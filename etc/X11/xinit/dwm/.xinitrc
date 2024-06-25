@@ -1,4 +1,4 @@
-feh --bg-scale /usr/share/wallpapers/dotfiles-wallpapers/dwm/dwm.png &
+feh --bg-scale /usr/share/wallpapers/dotfiles-wallpapers/minimalistic-wallpapers/minimalist-background.jpg &
 dwmblocks &
 dunst &
 unclutter &
