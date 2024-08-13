@@ -1,0 +1,11 @@
+#!/bin/sh
+
+current_layout=$(setxkbmap -query | grep layout | awk '{print $2}')
+
+if [ "$current_layout" = "us" ]; then
+    setxkbmap rs
+else
+    setxkbmap us
+fi
+
+kill -36 $(pidof dwmblocks)

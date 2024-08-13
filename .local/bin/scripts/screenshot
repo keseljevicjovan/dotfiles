@@ -1,0 +1,22 @@
+#!/bin/sh
+
+SCREENSHOTS_DIR=~/Pictures/scrot-screenshots
+TIMESTAMP=$(date '+%Y-%m-%d-%H%M%S')
+FILENAME="$SCREENSHOTS_DIR/$TIMESTAMP.png"
+
+mkdir -p "$SCREENSHOTS_DIR"
+
+if [ "$1" = "select" ]; then
+    scrot -s "$FILENAME"
+else
+    scrot "$FILENAME"
+fi
+
+if [ -f "$FILENAME" ]; then
+    notify-send "Screenshot saved" "Screenshot $TIMESTAMP saved at $SCREENSHOTS_DIR" --icon="$FILENAME"
+    xclip -selection clipboard -t image/png -i "$FILENAME"
+    exit 0
+else
+    notify-send "Screenshot failed" "Screenshot $TIMESTAMP could not be saved" --icon=error
+    exit 1
+fi
