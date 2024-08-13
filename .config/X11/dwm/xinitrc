@@ -1,0 +1,10 @@
+feh --bg-scale $HOME/.local/share/wallpapers/dotfiles-wallpapers/dwm/dwm.png &
+dunst &
+unclutter &
+picom &
+dwmblocks &
+xautolock -time 10 -locker slock &
+
+while :; do
+	ssh-agent dwm
+done

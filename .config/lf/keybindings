@@ -1,0 +1,14 @@
+map gp cd ~/Pictures
+map gs cd ~/Pictures/scrot-screenshots/
+map gc cd ~/.config/
+map gw cd /usr/share/backgrounds
+map gd cd ~/Downloads
+map gc cd ~/.config
+map gm cd ~/Music
+map gv cd ~/Videos
+map gP cd ~/Documents/pdfs/
+map g~ cd ~
+
+map d
+map dd cut
+map D delete

@@ -1,0 +1,32 @@
+#!/bin/sh
+
+file="$1"
+
+open_zathura(){ 
+  (command -v "zathura" > /dev/null 2>&1; ) && (zathura "$file" && pkill zathura; exit 0;); 
+}
+
+open_feh(){
+  # -F 
+  (command -v "feh" > /dev/null 2>&1; ) && (feh "$file" && pkill feh; exit 0;); 
+}
+
+open_with(){
+    for app in "$@"; do
+        if command -v "$app" > /dev/null 2>&1; then
+            exec "$app" "$file"
+            exit 0
+        fi
+    done
+    echo "No suitable application found to open $file"
+    exit 1
+}
+
+case "$(file --dereference --brief --mime-type -- "$file")" in
+    image/*) open_feh || open_with feh sxiv ;;
+    text/html) open_with surf firefox w3m lynx ;;
+    audio/*) open_with mplayer mpv ;;
+    video/*) open_with mpv vlc ;;
+    application/pdf) open_zathura || open_with okular firefox ;; 
+    *) open_with xdg-open "$file" ;;
+esac

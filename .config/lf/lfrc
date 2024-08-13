@@ -1,0 +1,18 @@
+source ~/.config/lf/keybindings
+
+set ratios "1:2:3"
+
+set icons          false
+set ignorecase     true
+set drawbox        true
+set dircounts      true
+set info           size:time
+#set number         true
+#set relativenumber true
+
+cmd open ${{
+    ~/.config/lf/opener "$f"
+}}
+
+set cleaner '~/.config/lf/cleaner'
+set previewer '~/.config/lf/preview'
