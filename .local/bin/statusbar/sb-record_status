@@ -1,0 +1,9 @@
+#!/bin/sh
+
+case $BLOCK_BUTTON in
+	1) rm -rf /tmp/record*
+esac
+
+if [ -f /tmp/recordingpid ]; then
+    echo "RECORDING" 
+fi
