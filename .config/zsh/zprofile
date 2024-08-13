@@ -1,0 +1,14 @@
+export PATH="$HOME/.local/bin/statusbar:$HOME/local/bin/scripts:$PATH"
+
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_CACHE_HOME="$HOME/.cache"
+export XINITRC="$XDG_CONFIG_HOME/X11/dwm/xinitrc"
+
+export WINE_PREFIX="$HOME/Games/Global_Wine_Prefix"
+export GTK_THEME="Adwaita:dark"
+#export QT_QPA_PLATFORMTHEME=kde
+#export WEBKIT_DISABLE_COMPOSITING_MODE=1 surf
+
+eval "$(dircolors ~/.dircolors)"
+
+[ "$(tty)" = "/dev/tty1" ] && ! pidof -s Xorg >/dev/null 2>&1 && exec startx "$XINITRC"
