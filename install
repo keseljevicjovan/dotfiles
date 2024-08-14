@@ -1,0 +1,24 @@
+#!/bin/sh
+
+
+OLD_CONFIG="$(pwd)/OLD_CONFIG"
+CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}"
+
+[ -d ./OLD_CONFIG ] || mkdir ./OLD_CONFIG
+
+cd .config || exit 1
+
+
+
+for i in *; do
+    [ -d "$CONFIG/$i" ] && 
+	    mv "$CONFIG/$i" "$OLD_CONFIG/$i" &&
+	    echo "$CONFIG/.config/$i -> $OLD_CONFIG/$i"
+    cp -r "$i" "$CONFIG/"
+done
+
+ln -sf "$CONFIG/zsh/zshrc" "$HOME/.zshrc"
+ln -sf "$CONFIG/zsh/zprofile" "$HOME/.zprofile"
+
+[ -d $CONFIG/zsh/pure ] ||
+	git clone "https://github.com/sindresorhus/pure.git" "$CONFIG/zsh/pure"
