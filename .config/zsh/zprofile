@@ -1,4 +1,4 @@
-export PATH="$HOME/.local/bin/statusbar:$HOME/local/bin/scripts:$PATH"
+export PATH="$HOME/.local/bin/statusbar:$HOME/.local/bin/scripts:$PATH"
 
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$HOME/.cache"
