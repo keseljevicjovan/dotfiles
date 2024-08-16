@@ -1,0 +1,9 @@
+#!/bin/sh
+
+WALLPAPER_DIR="$HOME/.local/share/wallpapers/dotfiles-wallpapers"
+
+SELECTED_WALLPAPER=$(find "$WALLPAPER_DIR" -type f \( -iname '*.jpg' -o -iname '*.png' -o -iname '*.jpeg' \) | sed "s|$WALLPAPER_DIR/||" | dmenu -i -p "Select Wallpaper:")
+
+[ -n "$SELECTED_WALLPAPER" ] && \
+feh --bg-scale "$WALLPAPER_DIR/$SELECTED_WALLPAPER" && \
+dunstify -i "$WALLPAPER_DIR/$SELECTED_WALLPAPER" "Wallpaper Changed" "$SELECTED_WALLPAPER"
