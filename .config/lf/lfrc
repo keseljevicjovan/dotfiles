@@ -2,7 +2,7 @@ source ~/.config/lf/keybindings
 
 set ratios "1:2:3"
 
-set icons          false
+set icons          true
 set ignorecase     true
 set drawbox        true
 set dircounts      true

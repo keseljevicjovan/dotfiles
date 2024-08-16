@@ -1,0 +1,41 @@
+di 
+ex  
+
+*.bin  
+*.py 
+*.cpp 
+*.c 
+*.cs 
+*.java 
+*.class 
+*.json 
+*.asm 
+
+*.html 
+*.htm 
+*.css 
+*.js 
+
+*.avif	
+*.png	
+*.webp	
+*.ico	
+*.jpg	
+*.jpe	
+*.jpeg	
+*.gif	
+*.svg	
+*.tif	
+*.tiff	
+*.xcf	
+
+*.mp3 
+*.ogg 
+
+*.mp4 
+
+*.pdf 
+
+*.txt 
+*.md 
+*.log 
