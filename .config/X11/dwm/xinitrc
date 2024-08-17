@@ -4,6 +4,7 @@ unclutter &
 picom &
 dwmblocks &
 xautolock -time 10 -locker slock &
+setxkbmap -option caps:escape
 
 while :; do
 	ssh-agent dwm
