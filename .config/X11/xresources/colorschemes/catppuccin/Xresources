@@ -1,0 +1,32 @@
+/* Catppuccin: */
+st.color0:   #24273a
+st.color1:   #eb6f92
+st.color2:   #c3e88d
+st.color3:   #f5e5bc
+st.color4:   #82aaff
+st.color5:   #c792ea
+st.color6:   #89ddff
+st.color7:   #cdd6f4
+st.color8:   #555b6e
+st.color9:   #eb6f92
+st.color10:  #c3e88d
+st.color11:  #f5e5bc
+st.color12:  #82aaff
+st.color13:  #c792ea
+st.color14:  #89ddff
+st.color15:  #ffffff
+st.background: #24273a
+st.foreground: #cdd6f4
+
+dwm.normbgcolor:     #24273a
+dwm.normbordercolor: #444b6b
+dwm.normfgcolor:     #cdd6f4
+dwm.selbgcolor:      #82aaff
+dwm.selbordercolor:  #82aaff
+dwm.selfgcolor:      #cdd6f4
+
+dmenu.background:    #24273a
+dmenu.foreground:    #cdd6f4
+dmenu.selbackground: #82aaff
+dmenu.selforeground: #cdd6f4
+

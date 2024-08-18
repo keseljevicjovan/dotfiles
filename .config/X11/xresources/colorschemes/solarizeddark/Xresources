@@ -1,0 +1,32 @@
+/* Solarized Dark: */
+st.color0:   #002b36
+st.color1:   #dc322f
+st.color2:   #859900
+st.color3:   #b58900
+st.color4:   #268bd2
+st.color5:   #d33682
+st.color6:   #2aa198
+st.color7:   #eee8d5
+st.color8:   #073642
+st.color9:   #cb4b16
+st.color10:  #586e75
+st.color11:  #657b83
+st.color12:  #839496
+st.color13:  #6c71c4
+st.color14:  #93a1a1
+st.color15:  #fdf6e3
+st.background: #002b36
+st.foreground: #eee8d5
+
+dwm.normbgcolor:     #002b36
+dwm.normbordercolor: #073642  
+dwm.normfgcolor:     #eee8d5
+dwm.selbgcolor:      #268bd2
+dwm.selbordercolor:  #268bd2
+dwm.selfgcolor:      #eee8d5
+
+dmenu.background:    #002b36
+dmenu.foreground:    #eee8d5
+dmenu.selbackground: #268bd2
+dmenu.selforeground: #eee8d5
+

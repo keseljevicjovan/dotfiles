@@ -1,0 +1,32 @@
+/* Nord: */
+st.color0:   #2e3440
+st.color1:   #bf616a
+st.color2:   #a3be8c
+st.color3:   #ebcb8b
+st.color4:   #81a1c1
+st.color5:   #b48ead
+st.color6:   #88c0d0
+st.color7:   #e5e9f0
+st.color8:   #4c566a
+st.color9:   #bf616a
+st.color10:  #a3be8c
+st.color11:  #ebcb8b
+st.color12:  #81a1c1
+st.color13:  #b48ead
+st.color14:  #8fbcbb
+st.color15:  #eceff4
+st.background: #2e3440
+st.foreground: #e5e9f0
+
+dwm.normbgcolor:     #2e3440
+dwm.normbordercolor: #3b4252
+dwm.normfgcolor:     #e5e9f0
+dwm.selbgcolor:      #81a1c1
+dwm.selbordercolor:  #81a1c1
+dwm.selfgcolor:      #e5e9f0
+
+dmenu.background:    #2e3440
+dmenu.foreground:    #e5e9f0
+dmenu.selbackground: #81a1c1
+dmenu.selforeground: #e5e9f0
+

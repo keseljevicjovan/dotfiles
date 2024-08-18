@@ -1,0 +1,32 @@
+/* One Dark: */
+st.color0:   #282c34
+st.color1:   #e06c75
+st.color2:   #98c379
+st.color3:   #e5c07b
+st.color4:   #61afef
+st.color5:   #c678dd
+st.color6:   #56b6c2
+st.color7:   #abb2bf
+st.color8:   #5c6370
+st.color9:   #be5046
+st.color10:  #98c379
+st.color11:  #e5c07b
+st.color12:  #61afef
+st.color13:  #c678dd
+st.color14:  #56b6c2
+st.color15:  #ffffff
+st.color256: #282c34
+st.color257: #abb2bf
+
+dwm.normbgcolor:     #282c34
+dwm.normbordercolor: #282c34
+dwm.normfgcolor:     #abb2bf
+dwm.selbgcolor:      #61afef
+dwm.selbordercolor:  #61afef
+dwm.selfgcolor:      #ffffff
+
+dmenu.background:    #282c34
+dmenu.foreground:    #abb2bf
+dmenu.selbackground: #61afef
+dmenu.selforeground: #ffffff
+

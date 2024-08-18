@@ -1,0 +1,12 @@
+!! core
+#include ".config/X11/xresources/core/font/Xresources"
+#include ".config/X11/xresources/core/transparency/Xresources"
+
+!! colorscheme
+!! #include ".config/X11/xresources/colorschemes/gruvbox/Xresources"
+!! #include ".config/X11/xresources/colorschemes/dracula/Xresources"
+!! #include ".config/X11/xresources/colorschemes/onedark/Xresources"
+!! #include ".config/X11/xresources/colorschemes/catppuccin/Xresources"
+!! #include ".config/X11/xresources/colorschemes/nord/Xresources"
+!! #include ".config/X11/xresources/colorschemes/solarizeddark/Xresources"
+!! #include ".config/X11/xresources/colorschemes/tokyodark/Xresources"
