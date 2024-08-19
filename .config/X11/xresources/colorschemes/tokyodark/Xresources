@@ -1,20 +1,20 @@
 /* Tokyo Night: */
-st.color0:   #1a1b26
-st.color1:   #ff6c6b
-st.color2:   #98be65
-st.color3:   #da8548
-st.color4:   #51afef
-st.color5:   #c678dd
-st.color6:   #46d9ff
-st.color7:   #c0caf5
-st.color8:   #414868
-st.color9:   #ff6c6b
-st.color10:  #98be65
-st.color11:  #da8548
-st.color12:  #51afef
-st.color13:  #c678dd
-st.color14:  #46d9ff
-st.color15:  #ffffff
+st.color0:     #1a1b26
+st.color1:     #ff6c6b
+st.color2:     #98be65
+st.color3:     #da8548
+st.color4:     #51afef
+st.color5:     #c678dd
+st.color6:     #46d9ff
+st.color7:     #c0caf5
+st.color8:     #414868
+st.color9:     #ff6c6b
+st.color10:    #98be65
+st.color11:    #da8548
+st.color12:    #51afef
+st.color13:    #c678dd
+st.color14:    #46d9ff
+st.color15:    #ffffff
 st.background: #1a1b26
 st.foreground: #c0caf5
 

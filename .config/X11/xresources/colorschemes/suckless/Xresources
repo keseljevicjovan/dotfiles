@@ -1,0 +1,38 @@
+/* Default: */
+st.color0:     black
+st.color1:     red3
+st.color2:     green3
+st.color3:     yellow3
+st.color4:     blue2
+st.color5:     magenta3
+st.color6:     cyan3
+st.color7:     gray90
+st.color8:     gray50
+st.color9:     red
+st.color10:    green
+st.color11:    yellow
+st.color12:    #5c5cff
+st.color13:    magenta
+st.color14:    cyan
+st.color15:    white
+st.background: black
+st.foreground: gray90
+
+dwm.normbgcolor:     #222222
+dwm.normbordercolor: #444444
+dwm.normfgcolor:     #bbbbbb
+dwm.selbgcolor:      #005577
+dwm.selbordercolor:  #005577
+dwm.selfgcolor:      #eeeeee
+
+dmenu.background:    #222222
+dmenu.foreground:    #bbbbbb
+dmenu.selbackground: #005577
+dmenu.selforeground: #eeeeee
+
+/* Not part of colorscheme but it will stay here for some time */
+
+!! dwm.borderpx: 1
+!! dwm.gappx: 0
+
+!! dwm.font: monospace:size=10

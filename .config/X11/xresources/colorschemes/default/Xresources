@@ -1,0 +1,31 @@
+/* Default: */
+st.color0:     #1E1E1E
+st.color1:     #FF4242
+st.color2:     #608B4E
+st.color3:     #FFFF66
+st.color4:     #569CD6
+st.color5:     #C678DD
+st.color6:     #56B6C2
+st.color7:     #D4D4D4
+st.color8:     #3C3C3C
+st.color9:     #FF5757
+st.color10:    #8C9B6D
+st.color11:    #FFFF99
+st.color12:    #669FF6
+st.color13:    #CC77FD
+st.color14:    #6EC6C6
+st.color15:    #E0E0E0
+st.background: #1d1f21
+st.foreground: gray90
+
+dwm.normbgcolor:     #222222
+dwm.normbordercolor: #444444
+dwm.normfgcolor:     #bbbbbb
+dwm.selbgcolor:      #005577
+dwm.selbordercolor:  #005577
+dwm.selfgcolor:      #eeeeee
+
+dmenu.background:    #222222
+dmenu.foreground:    #bbbbbb
+dmenu.selbackground: #005577
+dmenu.selforeground: #eeeeee
