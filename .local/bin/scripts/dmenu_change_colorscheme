@@ -1,0 +1,10 @@
+#!/bin/sh
+
+XR_FILE="$HOME/.config/X11/xresources/Xresources"
+COLORSCHEMES_DIR="$HOME/.config/X11/xresources/colorschemes"
+COLORSCHEMES=$(ls -d $COLORSCHEMES_DIR/*/ | xargs -n 1 basename)
+
+SELECTED_COLORSCHEME=$(printf "%s\n" $COLORSCHEMES | dmenu -p "Select colorscheme:") || exit 1
+
+xrdb -merge "$COLORSCHEMES_DIR/${SELECTED_COLORSCHEME}/Xresources" && \
+feh --bg-scale "$HOME/.local/share/wallpapers/dotfiles-wallpapers/arch-minimal-wallpapers/${SELECTED_COLORSCHEME}.png"
