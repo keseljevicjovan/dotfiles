@@ -2,12 +2,9 @@
 
 XR_FILE="$HOME/.config/X11/xresources/Xresources"
 THEMES_DIR="$HOME/.config/X11/xresources/colorschemes"
-THEMES=$(ls -d $THEMES_DIR/*/ | xargs -n 1 basename)
+THEMES=$(ls -d "$THEMES_DIR"/*/ | xargs -n 1 basename)
 
 SELECTED_THEME=$(printf "%s\n" $THEMES | dmenu -p "Select colorscheme:") || exit 1
 
-xrdb -merge "$THEMES_DIR/${SELECTED_THEME}/Xresources" && (
-#    feh --bg-scale "$(find "$HOME/.local/share/wallpapers/CUSTOM/$SELECTED_THEME" | shuf -n 1)"
-    xdotool key super+F5
-    pidof st | xargs kill -SIGUSR1
-)
+xrdb -merge "$THEMES_DIR/$SELECTED_THEME/Xresources" &&
+xdotool key super+F5
