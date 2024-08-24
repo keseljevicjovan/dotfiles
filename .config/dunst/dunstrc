@@ -13,12 +13,12 @@
     text_icon_padding   = 0
     frame_width         = 1
     frame_color         = "#aaaaaa"
-    font                = Monospace 8
+    font                = JetBrainsMono Nerd Font 8
     markup              = full
     format              = "<b>%s</b>\n%b"
 
     min_icon_size       = 32
-    max_icon_size       = 114
+    max_icon_size       = 100
     sticky_history      = yes
     history_length      = 10
     dmenu               = /usr/bin/dmenu -p dunst:

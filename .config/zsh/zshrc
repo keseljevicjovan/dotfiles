@@ -24,7 +24,6 @@ alias run-nvidia="__NV_PRIME_RENDERER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia
 alias syu="sudo pacman -Syu && kill -37 $(pidof dwmblocks)"
 alias yt-mp3="yt-dlp -x --audio-format mp3"
 alias c="xclip -selection clipboard"
-alias e='files=$(fzf --multi --preview "cat {}") && [ -n "$files" ] && echo "$files" | xargs nvim || echo "exit"' # until neovim config
 alias src="source $HOME/.zshrc"
 alias vim="nvim"
 
@@ -84,3 +83,4 @@ bindkey '^[[P' delete-char
 # Plugins
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+
