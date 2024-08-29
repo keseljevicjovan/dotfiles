@@ -25,10 +25,10 @@ dwm.selbgcolor:      #005577
 dwm.selbordercolor:  #005577
 dwm.selfgcolor:      #eeeeee
 
-dmenu.background:    #222222
-dmenu.foreground:    #bbbbbb
-dmenu.selbackground: #005577
-dmenu.selforeground: #eeeeee
+dmenu.normbgcolor:    #222222
+dmenu.normfgcolor:    #bbbbbb
+dmenu.selbgcolor: #005577
+dmenu.selfgcolor: #eeeeee
 
 /* Not part of colorscheme but it will stay here for some time */
 

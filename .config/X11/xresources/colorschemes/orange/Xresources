@@ -21,11 +21,11 @@ st.foreground: gray90
 dwm.normbgcolor:     #222222
 dwm.normbordercolor: #444444
 dwm.normfgcolor:     #bbbbbb
-dwm.selbgcolor:      #005577
-dwm.selbordercolor:  #005577
+dwm.selbgcolor:      #d65d0e
+dwm.selbordercolor:  #d65d0e
 dwm.selfgcolor:      #eeeeee
 
-dmenu.normbgcolor: #222222
-dmenu.normfgcolor: #bbbbbb
-dmenu.selbgcolor:  #005577
-dmenu.selfgcolor:  #eeeeee
+dmenu.normbgcolor:    #222222
+dmenu.normfgcolor:    #bbbbbb
+dmenu.selbgcolor: #d65d0e
+dmenu.selfgcolor: #eeeeee

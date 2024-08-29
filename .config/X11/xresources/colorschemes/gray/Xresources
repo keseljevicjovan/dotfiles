@@ -1,4 +1,4 @@
-/* Default: */
+/* Gray: */
 st.color0:     #1E1E1E
 st.color1:     #FF4242
 st.color2:     #608B4E
@@ -19,13 +19,13 @@ st.background: #1d1f21
 st.foreground: gray90
 
 dwm.normbgcolor:     #222222
-dwm.normbordercolor: #444444
+dwm.normbordercolor: #34363b
 dwm.normfgcolor:     #bbbbbb
-dwm.selbgcolor:      #005577
-dwm.selbordercolor:  #005577
+dwm.selbgcolor:      #34363b
+dwm.selbordercolor:  #777777
 dwm.selfgcolor:      #eeeeee
 
-dmenu.normbgcolor: #222222
-dmenu.normfgcolor: #bbbbbb
-dmenu.selbgcolor:  #005577
-dmenu.selfgcolor:  #eeeeee
+dmenu.normbgcolor:    #222222
+dmenu.normfgcolor:    #bbbbbb
+dmenu.selbgcolor: #777777
+dmenu.selfgcolor: #eeeeee
