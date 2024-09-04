@@ -1,6 +1,7 @@
 #!/bin/sh
 
 CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}"
+SCRIPTS="$HOME/.local/bin"
 
 cd .config ||
 	exit 1
@@ -15,3 +16,9 @@ ln -sf "$CONFIG/zsh/zprofile" "$HOME/.zprofile"
 
 [ -d $CONFIG/zsh/pure ] ||
 	git clone "https://github.com/sindresorhus/pure.git" "$CONFIG/zsh/pure"
+
+cd ../.local/bin/ || 
+    exit 1
+
+cp -r ./* $SCRIPTS &&
+    echo "Copied scripts to $SCRIPTS"
