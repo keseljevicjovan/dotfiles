@@ -1,14 +1,16 @@
 /* core */
-#include "core/font/Xresources"
-#include "core/transparency/Xresources"
+!! #include "core/font/Xresources"
+!! #include "core/transparency/Xresources"
 
 /* colorscheme */
 !! #include "colorschemes/catppuccin/Xresources"
-#include "colorschemes/default/Xresources"
+!! #include "colorschemes/default/Xresources"
 !! #include "colorschemes/dracula/Xresources"
-!! #include "colorschemes/gruvbox-dark/Xresources"
+!! #include "colorschemes/gray/Xresources"
+#include "colorschemes/gruvbox-dark/Xresources"
 !! #include "colorschemes/nord/Xresources"
 !! #include "colorschemes/onedark/Xresources"
+!! #include "colorschemes/orange/Xresources"
 !! #include "colorschemes/solarizeddark/Xresources"
 !! #include "colorschemes/suckless/Xresources"
 !! #include "colorschemes/tokyodark/Xresources"

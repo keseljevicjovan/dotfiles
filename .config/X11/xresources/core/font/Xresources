@@ -1,5 +1,5 @@
 !! Fonts
-dwm.font:      JetBrainsMono Nerd Font :size=9 
-dwm.dmenufont: JetBrainsMono Nerd Font :size=9
-dmenu.font:    JetBrainsMono Nerd Font :size=9
-st.font:       JetBrainsMono Nerd Font :pixelsize=10 :antialias=true :autohint=true
+!! dwm.font:      JetBrainsMono Nerd Font :size=9 
+!! dwm.dmenufont: JetBrainsMono Nerd Font :size=9
+!! dmenu.font:    JetBrainsMono Nerd Font :size=9
+!! st.font:       JetBrainsMono Nerd Font :pixelsize=10 :antialias=true :autohint=true

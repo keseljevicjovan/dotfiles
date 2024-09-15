@@ -78,9 +78,9 @@ lfcd () {
 bindkey -s '^o' '^ulfcd\n'
 bindkey -s '^a' '^ubc -lq\n'
 bindkey -s '^f' '^ucd "$(dirname "$(fzf)")"\n'
+bindkey -s '^t' '^utmux\n'
 bindkey '^[[P' delete-char
 
 # Plugins
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-
