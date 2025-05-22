@@ -4,10 +4,10 @@ export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$HOME/.cache"
 export XINITRC="$XDG_CONFIG_HOME/X11/xinit/dwm/xinitrc"
 
-export WINE_PREFIX="$HOME/Games/Global_Wine_Prefix"
 export GTK_THEME="Adwaita:dark"
-#export QT_QPA_PLATFORMTHEME=kde
-#export WEBKIT_DISABLE_COMPOSITING_MODE=1 surf
+export WINE_PREFIX="$HOME/Games/Global_Wine_Prefix"
+export _JAVA_AWT_WM_NONREPARENTING=1
+export MANPAGER='nvim +Man!'
 
 eval "$(dircolors ~/.dircolors)"
 

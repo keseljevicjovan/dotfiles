@@ -19,6 +19,5 @@ For window manager, terminal emulator and application launcher, see my [suckless
 ```sh
 git clone https://github.com/keseljevicjovan/dotfiles.git
 cd dotfiles
-./backup  # Optional
 ./install 
 ```

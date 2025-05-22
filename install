@@ -1,24 +1,35 @@
 #!/bin/sh
+set -eu
 
+DOTFILES="$(cd "$(dirname "$0")" && pwd)"
+OLD_CONFIG="$DOTFILES/OLD_CONFIG"
 CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}"
 SCRIPTS="$HOME/.local/bin"
 
-cd .config ||
-	exit 1
-
-for i in *; do
-    cp -r "$i" "$CONFIG/" &&
-        echo "$(pwd)/$i -> $CONFIG/$i"
+mkdir -p "$OLD_CONFIG"
+for i in "$CONFIG/.config/"*; do
+  [ -d "$i" ] && 
+    mv "$i" "$OLD_CONFIG/$(basename $i)" &&
+    echo "$i -> $OLD_CONFIG/$(basename $i)"
 done
+
+for i in "$DOTFILES/.config/"*; do
+  cp -r "$i" "$CONFIG/" &&
+    echo "$i -> $CONFIG/"
+done
+
+mkdir -p "$SCRIPTS"
+cp -r "$DOTFILES/.local/bin/"* "$SCRIPTS" &&
+  echo "Copied scripts to $SCRIPTS"
+
+[ -d "$CONFIG/zsh/pure" ] || \
+  git clone "https://github.com/sindresorhus/pure.git" "$CONFIG/zsh/pure"
 
 ln -sf "$CONFIG/zsh/zshrc" "$HOME/.zshrc"
 ln -sf "$CONFIG/zsh/zprofile" "$HOME/.zprofile"
 
-[ -d $CONFIG/zsh/pure ] ||
-	git clone "https://github.com/sindresorhus/pure.git" "$CONFIG/zsh/pure"
+mkdir -p "${XDG_CACHE_HOME:-$HOME/.cache}/zsh" "$HOME/.cache/mutt/"{headers,bodies,certificates}
 
-cd ../.local/bin/ || 
-    exit 1
+sudo pacman -S zsh-syntax-highlighting zsh-autosuggestions
 
-cp -r ./* $SCRIPTS &&
-    echo "Copied scripts to $SCRIPTS"
+[ -f $HOME/.dircolors ] || dircolors -p > $HOME/.dircolors
