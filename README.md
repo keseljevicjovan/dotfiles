@@ -4,7 +4,7 @@ This repository contains my personal dotfiles and configuration for:
 
 - picom
 - dunst
-- neovim
+- ~~neovim~~ (moved to [init.lua](https://github.com/keseljevicjovan/init.lua))
 - X (xinit, xresources)
 - tmux
 - lf
