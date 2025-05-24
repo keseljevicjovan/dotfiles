@@ -9,6 +9,7 @@ This repository contains my personal dotfiles and configuration for:
 - tmux
 - lf
 - zsh
+- cava
 
 There are also scripts that i use for status bar (dwmblocks).
 

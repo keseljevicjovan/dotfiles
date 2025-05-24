@@ -9,6 +9,4 @@ export WINE_PREFIX="$HOME/Games/Global_Wine_Prefix"
 export _JAVA_AWT_WM_NONREPARENTING=1
 export MANPAGER='nvim +Man!'
 
-eval "$(dircolors ~/.dircolors)"
-
 [ "$(tty)" = "/dev/tty1" ] && ! pidof -s Xorg >/dev/null 2>&1 && exec startx "$XINITRC"
