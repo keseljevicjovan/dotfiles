@@ -1,8 +1,3 @@
 #!/bin/sh 
 
-case $BLOCK_BUTTON in
-	1) setsid -f st -e btop ;;
-esac
-
-mem="$(free -h | awk '/^Mem:/ {print $3}')"
-echo -e "$mem"
+echo "$(free -h | awk '/^Mem:/ {print $3}')"

@@ -1,2 +1,3 @@
 #!/bin/sh
-LC_TIME=sr_RS.utf8 date '+%d %b, %A' | sed -E 's/\<./\u&/g'
+
+date '+%d %b, %A' | sed -E 's/\<./\u&/g'

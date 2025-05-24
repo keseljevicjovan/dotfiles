@@ -1,0 +1,5 @@
+#!/bin/sh
+
+setxkbmap -query | grep -q "caps:escape" &&
+  (setxkbmap -option && dunstify "Change to Normal mode") ||
+  (setxkbmap -option caps:escape && dunstify "Change to Vim mode")

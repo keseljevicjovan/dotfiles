@@ -1,8 +1,4 @@
 #!/bin/sh
 
 updates=$(checkupdates | wc -l)
-#updates=$(pacman -Qu | wc -l)
-
-if [ "$updates" -gt 0 ]; then
-	echo "󰏖 $updates updates"
-fi
+[ "$updates" -gt 0 ] && echo "󰏖 $updates updates"

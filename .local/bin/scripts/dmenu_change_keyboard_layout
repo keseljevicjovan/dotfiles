@@ -1,10 +1,12 @@
 #!/bin/sh
 
-layouts="us\nrs\nde\nru"
+names="English (US)\nSerbian (Cyrillic)\nSerbian (Latin)\nGerman\nRussian"
+codes="us\nrs\nrs(latin)\nde\nru"
 
-selected_layout=$(echo -e "$layouts" | dmenu -p "Keyboard layout to use:")
+sel=$(echo -e "$names" | dmenu -p "Keyboard layout to use:")
+[ -z "$sel" ] && exit
 
-if [ -n "$selected_layout" ]; then
-    setxkbmap "$selected_layout"
-    kill -36 $(pidof dwmblocks)
-fi
+idx=$(echo -e "$names" | grep -nFx "$sel" | cut -d: -f1)
+layout=$(echo -e "$codes" | sed -n "${idx}p")
+
+setxkbmap "$layout" && kill -36 $(pidof dwmblocks)
