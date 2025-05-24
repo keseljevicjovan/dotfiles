@@ -29,3 +29,6 @@ dmenu.normbgcolor: #222222
 dmenu.normfgcolor: #bbbbbb
 dmenu.selbgcolor:  #005577
 dmenu.selfgcolor:  #eeeeee
+
+Nsxiv.window.background: #222222
+Nsxiv.window.foreground: #005577

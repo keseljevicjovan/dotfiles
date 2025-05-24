@@ -1,4 +1,4 @@
-feh --bg-scale $HOME/.local/share/wallpapers/dotfiles-wallpapers/random/nord.jpg &
+feh --bg-scale $HOME/.local/share/wallpapers/dotfiles-wallpapers/random/nord.png
 dunst &
 unclutter &
 picom &

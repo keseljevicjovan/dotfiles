@@ -1,4 +1,4 @@
-/* Default: */
+/* Orange: */
 st.color0:     #1E1E1E
 st.color1:     #FF4242
 st.color2:     #608B4E
@@ -25,7 +25,10 @@ dwm.selbgcolor:      #d65d0e
 dwm.selbordercolor:  #d65d0e
 dwm.selfgcolor:      #eeeeee
 
-dmenu.normbgcolor:    #222222
-dmenu.normfgcolor:    #bbbbbb
-dmenu.selbgcolor: #d65d0e
-dmenu.selfgcolor: #eeeeee
+dmenu.normbgcolor: #222222
+dmenu.normfgcolor: #bbbbbb
+dmenu.selbgcolor:  #d65d0e
+dmenu.selfgcolor:  #eeeeee
+
+Nsxiv.window.background: #222222
+Nsxiv.window.foreground: #d65d0e

@@ -25,7 +25,10 @@ dwm.selbgcolor:      #34363b
 dwm.selbordercolor:  #777777
 dwm.selfgcolor:      #eeeeee
 
-dmenu.normbgcolor:    #222222
-dmenu.normfgcolor:    #bbbbbb
-dmenu.selbgcolor: #777777
-dmenu.selfgcolor: #eeeeee
+dmenu.normbgcolor: #222222
+dmenu.normfgcolor: #bbbbbb
+dmenu.selbgcolor:  #777777
+dmenu.selfgcolor:  #eeeeee
+
+Nsxiv.window.background: #222222
+Nsxiv.window.foreground: #777777

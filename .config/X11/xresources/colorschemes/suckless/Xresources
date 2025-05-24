@@ -25,14 +25,10 @@ dwm.selbgcolor:      #005577
 dwm.selbordercolor:  #005577
 dwm.selfgcolor:      #eeeeee
 
-dmenu.normbgcolor:    #222222
-dmenu.normfgcolor:    #bbbbbb
-dmenu.selbgcolor: #005577
-dmenu.selfgcolor: #eeeeee
+dmenu.normbgcolor: #222222
+dmenu.normfgcolor: #bbbbbb
+dmenu.selbgcolor:  #005577
+dmenu.selfgcolor:  #eeeeee
 
-/* Not part of colorscheme but it will stay here for some time */
-
-!! dwm.borderpx: 1
-!! dwm.gappx: 0
-
-!! dwm.font: monospace:size=10
+Nsxiv.window.background: #222222
+Nsxiv.window.foreground: #005577
