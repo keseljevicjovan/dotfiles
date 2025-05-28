@@ -3,7 +3,7 @@
 names="English (US)\nSerbian (Cyrillic)\nSerbian (Latin)\nGerman\nRussian"
 codes="us\nrs\nrs(latin)\nde\nru"
 
-sel=$(echo -e "$names" | dmenu -p "Keyboard layout to use:")
+sel=$(echo -e "$names" | dmenu -vi -p "Keyboard layout to use:")
 [ -z "$sel" ] && exit
 
 idx=$(echo -e "$names" | grep -nFx "$sel" | cut -d: -f1)

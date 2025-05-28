@@ -4,8 +4,7 @@ XR_FILE="$HOME/.config/X11/xresources/Xresources"
 THEMES_DIR="$HOME/.config/X11/xresources/colorschemes"
 THEMES=$(ls -d $THEMES_DIR/*/ | xargs -n 1 basename)
 
-SELECTED_THEME=$(printf "%s\n" $THEMES | dmenu -p "Select colorscheme:") || exit 1
-
+SELECTED_THEME=$(printf "%s\n" $THEMES | dmenu -vi -p "Select colorscheme:") || exit 1
 tmux source-file "$HOME/.config/tmux/themes/$SELECTED_THEME.conf"
 
 xrdb -merge "$THEMES_DIR/${SELECTED_THEME}/Xresources" && (

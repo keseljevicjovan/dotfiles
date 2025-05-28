@@ -5,5 +5,5 @@ if [ ! -f "$CACHE" ] || [ $(($(date +%s) - $(stat -c %Y "$CACHE"))) -gt 180 ]; t
     lutris -l | awk -F '|' '{print $2, $3}' | sed 's/^ *//;s/ *$//' | tail -n +2 > "$CACHE"
 fi
 
-GAME=$(dmenu -i -p "Select a game:" < "$CACHE" | awk '{print $NF}')
+GAME=$(dmenu -vi -i -p "Select a game:" < "$CACHE" | awk '{print $NF}')
 [ -n "$GAME" ] && lutris lutris:rungame/$GAME

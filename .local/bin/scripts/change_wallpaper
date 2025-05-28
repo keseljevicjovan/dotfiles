@@ -4,7 +4,7 @@ WALLPAPERS_DIR="$HOME/.local/share/wallpapers/dotfiles-wallpapers"
 
 [[ "$1" == nsxiv ]] && command -v nsxiv >/dev/null && \
   SELECTED=$(nsxiv -otb "$WALLPAPERS_DIR"/* | sed "s|$WALLPAPERS_DIR/||") || \
-  SELECTED=$(find "$WALLPAPERS_DIR" -type f \( -iname '*.jpg' -o -iname '*.png' -o -iname '*.jpeg' \) | sed "s|$WALLPAPERS_DIR/||" | dmenu -i -p "Select Wallpaper:")
+  SELECTED=$(find "$WALLPAPERS_DIR" -type f \( -iname '*.jpg' -o -iname '*.png' -o -iname '*.jpeg' \) | sed "s|$WALLPAPERS_DIR/||" | dmenu -vi -i -p "Select Wallpaper:")
 
 [[ -n $SELECTED ]] && (
   feh --bg-scale "$WALLPAPERS_DIR/$SELECTED" && 
