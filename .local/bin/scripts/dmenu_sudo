@@ -1,0 +1,4 @@
+#!/bin/sh
+
+[ $# -eq 0 ] && exit 1
+sudo -n -v 2>/dev/null && exec sudo "$@" || (while ! echo "$(dmenu -p "[sudo] password for $USER:" <&-)" | sudo -S -v >/dev/null 2>&1; do :; done && exec sudo "$@")
