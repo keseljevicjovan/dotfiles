@@ -1,12 +1,14 @@
-feh --bg-scale $HOME/.local/share/wallpapers/dotfiles-wallpapers/random/nord.png
+xwallpaper --zoom $HOME/.local/share/wallpapers/dotfiles-wallpapers/random/nord.png
 dunst &
 unclutter &
 picom &
 dwmblocks &
 xautolock -time 10 -locker slock &
 xrdb $XDG_CONFIG_HOME/X11/xresources/Xresources &
+slockbg &
 setxkbmap -option caps:escape
 
 while :; do
+  mpv "$HOME/Downloads/soft-startup-sound-269291.mp3" &
 	ssh-agent dwm
 done

@@ -16,7 +16,6 @@ setopt INC_APPEND_HISTORY_TIME  # append command to history file immediately aft
 alias history="fc -l 1" # display more than 15 items
 
 # Aliases
-alias l="ls --color=auto"
 alias ls="ls --color=auto"
 alias lf="lfub"
 alias neofetch="fastfetch"
@@ -26,6 +25,7 @@ alias yt-mp3="yt-dlp -x --audio-format mp3"
 alias c="xclip -selection clipboard"
 alias src="source $HOME/.zshrc"
 alias vim="nvim"
+alias sc="nvim $HOME/.local/bin/scripts"
 
 # Basic auto/tab complete:
 autoload -U compinit
@@ -81,9 +81,9 @@ bindkey -s '^f' '^ucd "$(dirname "$(fzf)")"\n'
 bindkey -s '^t' '^utmux\n'
 bindkey '^[[P' delete-char
 
-# Colors
-eval "$(dircolors ~/.dircolors)"
-
 # Plugins
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+# Colors
+eval "$(dircolors $HOME/.dircolors)"
