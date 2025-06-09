@@ -11,3 +11,5 @@ xrdb -merge "$THEMES_DIR/${SELECTED_THEME}/Xresources" && (
     xdotool key super+F5
     [ "$1" -ne 0 ] 2>/dev/null && pidof st | xargs kill -SIGUSR1
 )
+
+slockbg

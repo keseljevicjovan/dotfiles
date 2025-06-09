@@ -1,4 +1,4 @@
-xwallpaper --zoom $HOME/.local/share/wallpapers/dotfiles-wallpapers/random/nord.png
+feh --bg-scale $HOME/.local/share/wallpapers/dotfiles-wallpapers/random/nord.png
 dunst &
 unclutter &
 picom &
@@ -10,5 +10,5 @@ setxkbmap -option caps:escape
 
 while :; do
   mpv "$HOME/Downloads/soft-startup-sound-269291.mp3" &
-	ssh-agent dwm
+  ssh-agent dwm
 done

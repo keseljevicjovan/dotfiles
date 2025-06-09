@@ -1,0 +1,5 @@
+#!/bin/sh
+
+bg=$(xrdb -query | awk '/dwm.normbgcolor:/ {print $2}')
+fg=$(xrdb -query | awk '/dwm.normfgcolor:/ {print $2}')
+magick -size 1920x1080 xc:"$bg" -gravity center -pointsize 200 -font "FontAwesome" -fill "$fg" -annotate 0 "" -gravity south -pointsize 30 -font "/usr/share/fonts/TTF/JetBrainsMonoNerdFontMono-Bold.ttf" -fill "$fg" -annotate +0+50 "Type password to unlock" "$HOME/.cache/slock/slock.png"

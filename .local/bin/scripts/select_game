@@ -1,0 +1,17 @@
+#!/bin/sh
+
+DIR="$HOME/Games/Games"
+TMP="/tmp/games_thumbs"
+
+rm -rf "$TMP" && mkdir -p "$TMP"
+
+for G in "$DIR"/*; do
+  [ -f "$G/icon.png" ] && ln -s "$G/icon.png" "$TMP/$(basename "$G")"
+done
+
+[ "$(ls -A "$TMP")" ] || exit 1
+
+cd "$TMP" || exit
+SEL=$(nsxiv -ot * | sed 's/\.png$//')
+
+[ "$SEL" ] && exec "$DIR/$SEL/start"
