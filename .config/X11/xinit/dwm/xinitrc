@@ -4,7 +4,7 @@ unclutter &
 picom &
 dwmblocks &
 xautolock -time 10 -locker slock &
-xrdb $XDG_CONFIG_HOME/X11/xresources/Xresources &
+xrdb $XDG_CONFIG_HOME/X11/xresources/Xresources
 slockbg &
 setxkbmap -option caps:escape
 

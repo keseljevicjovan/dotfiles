@@ -5,7 +5,7 @@ export XDG_CACHE_HOME="$HOME/.cache"
 export XINITRC="$XDG_CONFIG_HOME/X11/xinit/dwm/xinitrc"
 
 export GTK_THEME="Adwaita:dark"
-export WINEPREFIX="$HOME/Games/Global_Wine_Prefix"
+export WINEPREFIX="$HOME/Games/wineprefixes/Global"
 export _JAVA_AWT_WM_NONREPARENTING=1
 export MANPAGER='nvim +Man!'
 

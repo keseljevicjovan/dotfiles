@@ -5,6 +5,7 @@ DOTFILES="$(cd "$(dirname "$0")" && pwd)"
 OLD_CONFIG="$DOTFILES/OLD_CONFIG"
 CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}"
 SCRIPTS="$HOME/.local/bin"
+CACHE=${XDG_CACHE_HOME:-$HOME/.cache}
 
 mkdir -p "$OLD_CONFIG"
 for i in "$CONFIG/.config/"*; do
@@ -28,7 +29,7 @@ cp -r "$DOTFILES/.local/bin/"* "$SCRIPTS" &&
 ln -sf "$CONFIG/zsh/zshrc" "$HOME/.zshrc"
 ln -sf "$CONFIG/zsh/zprofile" "$HOME/.zprofile"
 
-mkdir -p "${XDG_CACHE_HOME:-$HOME/.cache}/zsh" "$HOME/.cache/mutt/"{headers,bodies,certificates}
+mkdir -p "$CACHE/"{zsh,slock} "$CACHE/mutt/"{headers,bodies,certificates}
 
 sudo pacman -S zsh-syntax-highlighting zsh-autosuggestions
 
