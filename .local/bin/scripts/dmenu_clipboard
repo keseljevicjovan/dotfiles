@@ -1,0 +1,6 @@
+#!/bin/sh
+
+HIST="$HOME/.cache/xclip_history"
+
+[ "$1" = select ] && grep -v '^\s*$' "$HIST" | dmenu -vi | xclip -selection clipboard
+[ "$1" = save ] && { clip=$(xclip -o -selection clipboard); tail -n1 "$HIST" | grep -Fxq "$clip" || { tail -c1 "$HIST" | grep -q $'\n' || echo >> "$HIST"; echo "" >> "$HIST"; echo "$clip" >> "$HIST"; dunstify "Saved to clipboard" "$clip"; } }

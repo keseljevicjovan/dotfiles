@@ -2,6 +2,6 @@
 
 current_layout=$(setxkbmap -query | awk '/layout/{print $2}')
 
-[[ "$current_layout" == us ]] && setxkbmap rs || setxkbmap us
+[ "$current_layout" = us ] && setxkbmap rs || setxkbmap us
 
 kill -36 $(pidof dwmblocks)

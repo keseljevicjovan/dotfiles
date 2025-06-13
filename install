@@ -29,7 +29,8 @@ cp -r "$DOTFILES/.local/bin/"* "$SCRIPTS" &&
 ln -sf "$CONFIG/zsh/zshrc" "$HOME/.zshrc"
 ln -sf "$CONFIG/zsh/zprofile" "$HOME/.zprofile"
 
-mkdir -p "$CACHE/"{zsh,slock} "$CACHE/mutt/"{headers,bodies,certificates}
+mkdir -p "$CACHE"/{zsh,slock,mutt/{headers,bodies,certificates}} "Pictures/scrot-screenshots"
+touch "$CACHE/xclip_history"
 
 sudo pacman -S zsh-syntax-highlighting zsh-autosuggestions
 
