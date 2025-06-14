@@ -1,0 +1,42 @@
+#!/bin/sh
+
+TOKEN=$(secret-tool lookup user "$(git config user.name)")
+[ -z "$TOKEN" ] && echo "TOKEN not set" >&2 && exit 1
+
+ACTION=$(printf "List\nClone\nCreate\nDelete" | dmenu -i -vi)
+
+case "$ACTION" in
+  List)
+    REPOS=$(curl -s -H "Authorization: token $TOKEN" "https://api.github.com/user/repos?per_page=100")
+    SELECTED=$(echo "$REPOS" | jq -r '.[].name' | dmenu -i -vi)
+    [ -z "$SELECTED" ] && exit 0
+    echo "$REPOS" | jq -r --arg NAME "$SELECTED" '.[] | select(.name == $NAME) | .html_url'
+    ;;
+
+  Clone)
+    REPOS=$(curl -s -H "Authorization: token $TOKEN" "https://api.github.com/user/repos?per_page=100")
+    SELECTED=$(echo "$REPOS" | jq -r '.[].name' | dmenu -i -vi)
+    [ -z "$SELECTED" ] && exit 0
+    URL=$(echo "$REPOS" | jq -r --arg NAME "$SELECTED" '.[] | select(.name == $NAME) | .clone_url')
+    git clone "$URL"
+    ;;
+
+  Create)
+    NAME=$(dmenu -i -vi -p "New repo name:" < /dev/null)
+    [ -z "$NAME" ] && exit 0
+    URL=$(curl -s -X POST -H "Authorization: token $TOKEN" -d '{"name":"'$NAME'"}' https://api.github.com/user/repos | jq -r '.html_url // empty')
+    [ -z "$URL" ] && echo "Failed to create: repository exists or permission denied."
+    ;;
+  Delete)
+    REPOS=$(curl -s -H "Authorization: token $TOKEN" "https://api.github.com/user/repos?per_page=100")
+    SELECTED=$(echo "$REPOS" | jq -r '.[].name' | dmenu -i -vi)
+    [ -z "$SELECTED" ] && exit 0
+    USER=$(curl -s -H "Authorization: token $TOKEN" https://api.github.com/user | jq -r .login)
+    CONFIRM=$(printf "No\nYes" | dmenu -i -vi -p "Delete '$SELECTED'?")
+    [ "$CONFIRM" != "Yes" ] && exit 0
+    curl -s -X DELETE -H "Authorization: token $TOKEN" "https://api.github.com/repos/$USER/$SELECTED"
+    ;;
+  *)
+    exit 0
+    ;;
+esac

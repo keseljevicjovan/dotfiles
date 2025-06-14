@@ -19,12 +19,12 @@ alias history="fc -l 1" # display more than 15 items
 alias ls="ls --color=auto"
 alias lf="lfub"
 alias neofetch="fastfetch"
-alias run-nvidia="__NV_PRIME_RENDERER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia"
+#alias run-nvidia="__NV_PRIME_RENDERER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia"
 alias syu="sudo pacman -Syu && kill -37 $(pidof dwmblocks)"
 alias yt-mp3="yt-dlp -x --audio-format mp3"
 alias c="xclip -selection clipboard"
 alias src="source $HOME/.zshrc"
-alias vim="nvim"
+alias e="nvim"
 alias sc="nvim $HOME/.local/bin/scripts"
 
 # Basic auto/tab complete:
@@ -75,10 +75,14 @@ lfcd () {
 	fi
 }
 
+stty -ixon
+
 bindkey -s '^o' '^ulfcd\n'
-bindkey -s '^a' '^ubc -lq\n'
 bindkey -s '^f' '^ucd "$(dirname "$(fzf)")"\n'
 bindkey -s '^t' '^utmux\n'
+bindkey -s '^v' '^udmenu_openvpn\n'
+bindkey -s '^s' '^udmenu_ssh\n'
+bindkey -s '^G' 'dmenu_github\n'
 bindkey '^[[P' delete-char
 
 # Plugins
@@ -87,3 +91,4 @@ source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # Colors
 eval "$(dircolors $HOME/.dircolors)"
+

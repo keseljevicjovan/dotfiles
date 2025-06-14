@@ -23,11 +23,11 @@ mkdir -p "$SCRIPTS"
 cp -r "$DOTFILES/.local/bin/"* "$SCRIPTS" &&
   echo "Copied scripts to $SCRIPTS"
 
-[ -d "$CONFIG/zsh/pure" ] || \
-  git clone "https://github.com/sindresorhus/pure.git" "$CONFIG/zsh/pure"
+[ -d "$CONFIG/zsh/pure" ] || git clone "https://github.com/sindresorhus/pure.git" "$CONFIG/zsh/pure"
 
 ln -sf "$CONFIG/zsh/zshrc" "$HOME/.zshrc"
 ln -sf "$CONFIG/zsh/zprofile" "$HOME/.zprofile"
+# ln -sf "$CONFIG/git/gitconfig" "$HOME/.gitconfig"
 
 mkdir -p "$CACHE"/{zsh,slock,mutt/{headers,bodies,certificates}} "Pictures/scrot-screenshots"
 touch "$CACHE/xclip_history"

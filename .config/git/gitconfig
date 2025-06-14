@@ -1,0 +1,9 @@
+[user]
+  email = keseljevicjovan@proton.me
+  name = keseljevicjovan
+[init]
+  defaultbranch = main
+[credential]
+  helper = libsecret
+[core]
+  editor = nvim

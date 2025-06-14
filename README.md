@@ -10,6 +10,7 @@ This repository contains my personal dotfiles and configuration for:
 - lf
 - zsh
 - cava
+- git
 
 There are also scripts that i use for status bar (dwmblocks).
 
