@@ -23,9 +23,11 @@ case "$ACTION" in
 
   Create)
     NAME=$(dmenu -i -vi -p "New repo name:" < /dev/null)
+    PRIVATE=$( [ "$(printf "No\nYes" | dmenu -i -vi -p "Private repository?")" = "Yes" ] && echo true || echo false )
     [ -z "$NAME" ] && exit 0
-    URL=$(curl -s -X POST -H "Authorization: token $TOKEN" -d '{"name":"'$NAME'"}' https://api.github.com/user/repos | jq -r '.html_url // empty')
-    [ -z "$URL" ] && echo "Failed to create: repository exists or permission denied."
+    URL=$(curl -s -X POST -H "Authorization: token $TOKEN" -d '{"name":"'$NAME'","private":'$PRIVATE'}' https://api.github.com/user/repos | jq -r '.html_url // empty')
+    [ -z "$URL" ] && echo "Failed to create: repository exists or permission denied." >&2 && exit 1
+    exit 0
     ;;
   Delete)
     REPOS=$(curl -s -H "Authorization: token $TOKEN" "https://api.github.com/user/repos?per_page=100")
