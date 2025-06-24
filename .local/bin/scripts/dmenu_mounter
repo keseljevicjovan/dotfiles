@@ -1,0 +1,104 @@
+#!/bin/sh
+
+list_block_devs() {
+    lsblk -o NAME,SIZE,TYPE,MOUNTPOINT,MODEL -nr | grep 'part' | while read -r name size type mp model; do
+        dev="/dev/$name"
+        udev_info=$(udevadm info --query=all --name="$dev" 2>/dev/null)
+        case "$udev_info" in
+            *ID_BUS=usb*) icon=" " ;;
+            *)            icon="󰋊 " ;;
+        esac
+        mp_str=""
+        [ -n "$mp" ] && mp_str=", mounted at $mp"
+        echo "$icon $dev ($size$mp_str)"
+    done
+}
+
+list_mtp_devs() {
+    lsusb | grep -i 'mtp\|android' | while read -r line; do
+        bus=$(echo "$line" | awk '{print $2}')
+        devnum=$(echo "$line" | awk '{print $4}' | sed 's/://')
+        desc=$(echo "$line" | cut -d' ' -f7-)
+        icon=" "
+        echo "$icon MTP device on Bus $bus Device $devnum ($desc)"
+    done
+}
+
+list_mounted_block() {
+    lsblk -o NAME,SIZE,TYPE,MOUNTPOINT,MODEL -nr | while read -r name size type mp model; do
+        [ -z "$mp" ] && continue
+        case "$type" in
+            part|lvm|crypt|raid) ;;
+            *) continue ;;
+        esac
+        dev="/dev/$name"
+        udev_info=$(udevadm info --query=all --name="$dev" 2>/dev/null)
+        case "$udev_info" in
+            *ID_BUS=usb*) icon=" " ;;
+            *)            icon="󰋊 " ;;
+        esac
+        echo "$icon $dev ($size), mounted at $mp"
+    done
+}
+
+list_mounted_mtp() {
+    mount | grep -E 'simple-mtpfs|mtpfs|go-mtpfs' | while read -r line; do
+        mp=$(echo "$line" | awk '{print $3}')
+        echo " MTP device mounted at $mp"
+    done
+}
+
+if [ "${1#u}" != "$1" ]; then
+    DEVS=$(list_mounted_block; list_mounted_mtp)
+    [ -z "$DEVS" ] && { dunstify -u normal "Unmount" "No mounted devices found"; exit 0; }
+    SEL=$(echo "$DEVS" | dmenu -vi -i -p "Select device to unmount:") || exit
+    if echo "$SEL" | grep -q '^ '; then
+        MP=$(echo "$SEL" | awk -F ' at ' '{print $2}')
+        if dmenu_sudo fusermount -u "$MP"; then
+            dunstify "Unmount successful" "Unmounted MTP device at $MP"
+        else
+            dunstify -u critical "Unmount failed" "Failed to unmount $MP"
+        fi
+    else
+        DEV=$(echo "$SEL" | awk '{print $2}')
+        MP=$(echo "$SEL" | sed -n 's/.*mounted at //p')
+        if dmenu_sudo umount "$MP"; then
+            dunstify "Unmount successful" "Unmounted $DEV at $MP"
+        else
+            dunstify -u critical "Unmount failed" "Failed to unmount $DEV at $MP"
+        fi
+    fi
+    exit
+fi
+
+list_devs() {
+    list_block_devs
+    list_mtp_devs
+}
+
+SEL=$(list_devs | dmenu -vi -i -p "Select device:") || exit
+
+if echo "$SEL" | grep -q '^ '; then
+    MP=/mnt/$(ls /mnt | dmenu -vi -i -p "Mount mobile to:") || exit
+    mkdir -p "$MP"
+    dmenu_sudo fusermount -u "$MP" 2>/dev/null
+    if dmenu_sudo simple-mtpfs -o allow_other,uid=$(id -u),gid=$(id -g) "$MP"; then
+        dunstify "Mount successful" "Phone mounted at $MP"
+    else
+        dunstify -u critical "Mount failed" "Could not mount mobile at $MP"
+    fi
+else
+    DEV=$(echo "$SEL" | awk '{print $2}') || exit
+    [ -z "$DEV" ] && exit
+    MP=/mnt/$(ls /mnt | dmenu -vi -i -p "Mount $DEV to:") || exit
+    FSTYPE=$(lsblk -no FSTYPE "$DEV")
+    case "$FSTYPE" in
+        vfat|exfat|ntfs) OPTS="uid=$(id -u),gid=$(id -g)" ;;
+        *)               OPTS="defaults" ;;
+    esac
+    if dmenu_sudo mount -o "$OPTS" "$DEV" "$MP"; then
+        dunstify "Mount successful" "$DEV mounted at $MP"
+    else
+        dunstify -u critical "Mount failed" "Could not mount $DEV at $MP"
+    fi
+fi
