@@ -17,6 +17,7 @@ alias history="fc -l 1" # display more than 15 items
 
 # Aliases
 alias ls="ls --color=auto"
+alias grep="grep --color"
 alias lf="lfub"
 alias neofetch="fastfetch"
 #alias run-nvidia="__NV_PRIME_RENDERER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia"
@@ -26,6 +27,7 @@ alias c="xclip -selection clipboard"
 alias src="source $HOME/.zshrc"
 alias e="nvim"
 alias sc="nvim $HOME/.local/bin/scripts"
+alias mnt="dmenu_mounter"
 
 # Basic auto/tab complete:
 autoload -U compinit
@@ -91,4 +93,3 @@ source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # Colors
 eval "$(dircolors $HOME/.dircolors)"
-

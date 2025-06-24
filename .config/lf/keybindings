@@ -1,14 +1,25 @@
 map gp cd ~/Pictures
 map gs cd ~/Pictures/scrot-screenshots/
 map gc cd ~/.config/
-map gw cd /usr/share/backgrounds
 map gd cd ~/Downloads
-map gc cd ~/.config
 map gm cd ~/Music
 map gv cd ~/Videos
 map gP cd ~/Documents/pdfs/
 map g~ cd ~
+map gb $lf -remote "send $id cd $OLDPWD" 
 
-map d
+map C clear
+
+map A :rename; cmd-end
+map c push A<c-u>
+map I :rename; cmd-home
+
+map M push %mkdir<space>""<left>
+
+map x $$f
+map X !$f
+
 map dd cut
 map D delete
+
+map e $nvim "$f"
