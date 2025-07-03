@@ -1,10 +1,12 @@
 #!/bin/sh
 
-SCREENSHOTS_DIR="$HOME/Pictures/scrot-screenshots"
+SCREENSHOTS_DIR=~/Pictures/scrot-screenshots
 TIMESTAMP=$(date '+%Y-%m-%d-%H%M%S')
 FILENAME="$SCREENSHOTS_DIR/$TIMESTAMP.png"
 
-[ "$1" = "select" ] && scrot -s "$FILENAME" || scrot "$FILENAME"
+[ "$1" = "select" ] && scrot -s "$FILENAME" || ( [ "$1" != "select" ] && scrot "$FILENAME" )
 
-dunstify -i "$FILENAME" "Screenshot saved" "Screenshot $TIMESTAMP saved at $SCREENSHOTS_DIR"
-xclip -selection clipboard -t image/png -i "$FILENAME"
+[ -f "$FILENAME" ] && {
+    dunstify -i "$FILENAME" "Screenshot saved" "Screenshot $TIMESTAMP saved at $SCREENSHOTS_DIR"
+    xclip -selection clipboard -t image/png -i "$FILENAME"
+} || dunstify "Screenshot failed" "Screenshot was not saved."
