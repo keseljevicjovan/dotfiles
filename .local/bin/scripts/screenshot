@@ -1,6 +1,6 @@
 #!/bin/sh
 
-SCREENSHOTS_DIR=~/Pictures/scrot-screenshots
+SCREENSHOTS_DIR=~/pictures/screenshots
 TIMESTAMP=$(date '+%Y-%m-%d-%H%M%S')
 FILENAME="$SCREENSHOTS_DIR/$TIMESTAMP.png"
 

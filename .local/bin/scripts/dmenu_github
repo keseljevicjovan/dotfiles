@@ -17,7 +17,7 @@ case "$ACTION" in
     REPOS=$(curl -s -H "Authorization: token $TOKEN" "https://api.github.com/user/repos?per_page=100")
     SELECTED=$(echo "$REPOS" | jq -r '.[].name' | dmenu -i -vi)
     [ -z "$SELECTED" ] && exit 0
-    URL=$(echo "$REPOS" | jq -r --arg NAME "$SELECTED" '.[] | select(.name == $NAME) | .clone_url')
+    URL=$(echo "$REPOS" | jq -r --arg NAME "$SELECTED" '.[] | select(.name == $NAME) | .clone_url' | sed "s#https://#https://$TOKEN@#")
     git clone "$URL"
     ;;
 

@@ -1,3 +1,3 @@
 #!/bin/sh
 
-dmenu_sudo openvpn --config ~/.vpn/"$(find ~/.vpn -type f -name '*.ovpn' 2>/dev/null | sed 's|.*/||' | dmenu -i -p 'Choose VPN: ')" --daemon
+dmenu_sudo openvpn --config ~/.vpn/"$(find ~/.vpn -type f -name '*.ovpn' 2>/dev/null | sed 's|.*/||' | dmenu -vi -i -p 'Choose VPN: ')" --daemon

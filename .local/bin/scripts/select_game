@@ -1,6 +1,6 @@
 #!/bin/sh
 
-DIR="$HOME/Games/Games"
+DIR="$HOME/games"
 TMP="/tmp/games_thumbs"
 
 rm -rf "$TMP" && mkdir -p "$TMP"
