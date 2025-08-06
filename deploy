@@ -1,6 +1,7 @@
 #!/bin/sh
 set -eu
 
+# Dotfiles
 DOTFILES="$(cd "$(dirname "$0")" && pwd)"
 OLD_CONFIG="$DOTFILES/OLD_CONFIG"
 CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}"
@@ -23,15 +24,23 @@ mkdir -p "$SCRIPTS"
 cp -r "$DOTFILES/.local/bin/"* "$SCRIPTS" &&
   echo "Copied scripts to $SCRIPTS"
 
-[ -d "$CONFIG/zsh/pure" ] || git clone "https://github.com/sindresorhus/pure.git" "$CONFIG/zsh/pure"
+[ -d "$CONFIG/zsh/pure" ] || git clone "https://github.com/sindresorhus/pure.git" "$CACHE/zsh/pure"
 
 ln -sf "$CONFIG/zsh/zshrc" "$HOME/.zshrc"
 ln -sf "$CONFIG/zsh/zprofile" "$HOME/.zprofile"
-# ln -sf "$CONFIG/git/gitconfig" "$HOME/.gitconfig"
+ln -sf "$CONFIG/git/gitconfig" "$HOME/.gitconfig"
 
-mkdir -p "$CACHE"/{zsh,slock,mutt/{headers,bodies,certificates}} "Pictures/scrot-screenshots"
+mkdir -p "$CACHE"/{zsh,slock,nvim,mutt/{headers,bodies,certificates}} "$HOME/pictures/screenshots"
 touch "$CACHE/xclip_history"
 
 sudo pacman -S zsh-syntax-highlighting zsh-autosuggestions
 
 [ -f $HOME/.dircolors ] || dircolors -p > $HOME/.dircolors
+
+# Install suckless software
+git clone https://github.com/keseljevicjovan/suckless
+sed -i "s|jovan|$(whoami)|g" suckless/slock/config.h
+for i in ./suckless/*; do ( cd $i; sudo make install clean; cd .. ); done
+
+# Install neovim
+git clone https://github.com/keseljevicjovan/init.lua "$HOME/.config/nvim"

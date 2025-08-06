@@ -7,8 +7,8 @@ set ignorecase     true
 set drawbox        true
 set dircounts      true
 set info           size:time
-#set number         true
-#set relativenumber true
+set number         true
+set relativenumber true
 
 cmd open ${{
     ~/.config/lf/opener "$f"

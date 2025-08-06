@@ -1,5 +1,5 @@
 # Prompt
-fpath+=($HOME/.config/zsh/pure)
+fpath+=($HOME/.cache/zsh/pure)
 autoload -U promptinit; promptinit
 prompt pure
 

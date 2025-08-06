@@ -1,12 +1,16 @@
-map gp cd ~/Pictures
-map gs cd ~/Pictures/scrot-screenshots/
-map gc cd ~/.config/
-map gd cd ~/Downloads
-map gm cd ~/Music
-map gv cd ~/Videos
-map gP cd ~/Documents/pdfs/
-map g~ cd ~
+map gD cd ~/downloads
+map gS cd ~/.local/bin/scripts
+map gW cd ~/.local/share/wallpapers
 map gb $lf -remote "send $id cd $OLDPWD" 
+map gc cd ~/.config
+map gd cd ~/dev
+map gh cd ~/hacking
+map gm cd ~/music
+map go cd ~/documents/obsidian
+map gp cd ~/documents/pdfs
+map gs cd ~/pictures/screenshots
+map gv cd ~/videos/screen-recordings
+map gw cd ~/dev/web-server
 
 map C clear
 
@@ -21,5 +25,7 @@ map X !$f
 
 map dd cut
 map D delete
+
+map Y $mime=$(file --mime-type -Lb "$f"); xclip -selection clipboard -t "$mime" -i "$f"
 
 map e $nvim "$f"

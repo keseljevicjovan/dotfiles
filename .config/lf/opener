@@ -7,11 +7,15 @@ open_zathura(){
   (command -v "zathura" > /dev/null 2>&1; ) && (zathura "$file" && pkill zathura; exit 0;); 
 }
 
+case "$file" in
+  *.m3u|*.m3u8) exec mpv "$file" ;;
+esac
+
 case "$mime" in
     text/*)     exec nvim "$file" ;;
     text/html)  exec firefox "$file" ;;
     image/*)    command -v nsxiv >/dev/null && exec nsxiv -ba "$file" || exec feh "$file" ;;
-    audio/*)    exec mplayer "$file" ;;
+    audio/*)    exec mpv "$file" ;;
     video/*)    exec mpv "$file" ;;
     application/pdf) open_zathura ;;
     *)          exec xdg-open "$file" ;;
