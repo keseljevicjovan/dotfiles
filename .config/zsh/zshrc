@@ -1,5 +1,5 @@
 # Prompt
-fpath+=($HOME/.cache/zsh/pure)
+fpath+=($XDG_DATA_HOME/zsh/plugins/pure)
 autoload -U promptinit; promptinit
 prompt pure
 
@@ -87,9 +87,9 @@ bindkey -s '^s' '^udmenu_ssh\n'
 bindkey -s '^G' 'dmenu_github\n'
 bindkey '^[[P' delete-char
 
-# Plugins
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-
 # Colors
 eval "$(dircolors $HOME/.dircolors)"
+
+# Plugins
+source $XDG_DATA_HOME/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $XDG_DATA_HOME/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh

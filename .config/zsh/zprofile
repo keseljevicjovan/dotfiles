@@ -2,6 +2,8 @@ export PATH="$HOME/.local/bin/statusbar:$HOME/.local/bin/scripts:$PATH"
 
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_STATE_HOME="$HOME/.local/state"
 export XINITRC="$XDG_CONFIG_HOME/X11/xinit/dwm/xinitrc"
 
 export GTK_THEME="Adwaita:dark"

@@ -7,9 +7,10 @@ OLD_CONFIG="$DOTFILES/OLD_CONFIG"
 CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}"
 SCRIPTS="$HOME/.local/bin"
 CACHE=${XDG_CACHE_HOME:-$HOME/.cache}
+DATA="${XDG_DATA_HOME:-$HOME/.local/share}"
 
 mkdir -p "$OLD_CONFIG"
-for i in "$CONFIG/.config/"*; do
+for i in "$CONFIG/"*; do
   [ -d "$i" ] && 
     mv "$i" "$OLD_CONFIG/$(basename $i)" &&
     echo "$i -> $OLD_CONFIG/$(basename $i)"
@@ -24,23 +25,29 @@ mkdir -p "$SCRIPTS"
 cp -r "$DOTFILES/.local/bin/"* "$SCRIPTS" &&
   echo "Copied scripts to $SCRIPTS"
 
-[ -d "$CONFIG/zsh/pure" ] || git clone "https://github.com/sindresorhus/pure.git" "$CACHE/zsh/pure"
+[ -f $HOME/.dircolors ] || dircolors -p > $HOME/.dircolors
+
+mkdir -p "$DATA/"{zsh,tmux}/plugins
+
+git clone "https://github.com/sindresorhus/pure.git" "$DATA/zsh/plugins/pure"
+git clone "https://github.com/zsh-users/zsh-autosuggestions.git" "$DATA/zsh/plugins/zsh-autosuggestions"
+git clone "https://github.com/zsh-users/zsh-syntax-highlighting.git" "$DATA/zsh/plugins/zsh-syntax-highlighting"
+git clone "https://github.com/tmux-plugins/tpm" "$DATA/tmux/plugins/tpm"
 
 ln -sf "$CONFIG/zsh/zshrc" "$HOME/.zshrc"
 ln -sf "$CONFIG/zsh/zprofile" "$HOME/.zprofile"
 ln -sf "$CONFIG/git/gitconfig" "$HOME/.gitconfig"
 
-mkdir -p "$CACHE"/{zsh,slock,nvim,mutt/{headers,bodies,certificates}} "$HOME/pictures/screenshots"
+mkdir -p "$CACHE"/{zsh,slock,nvim} "$HOME/pictures/screenshots"
 touch "$CACHE/xclip_history"
 
-sudo pacman -S zsh-syntax-highlighting zsh-autosuggestions
+chsh -s "$(command -v zsh)"
 
-[ -f $HOME/.dircolors ] || dircolors -p > $HOME/.dircolors
+# Neovim
+git clone https://github.com/keseljevicjovan/init.lua "$CONFIG/nvim"
 
-# Install suckless software
-git clone https://github.com/keseljevicjovan/suckless
-sed -i "s|jovan|$(whoami)|g" suckless/slock/config.h
-for i in ./suckless/*; do ( cd $i; sudo make install clean; cd .. ); done
-
-# Install neovim
-git clone https://github.com/keseljevicjovan/init.lua "$HOME/.config/nvim"
+# Suckless software
+#
+# git clone https://github.com/keseljevicjovan/suckless
+# sed -i "s|jovan|$(whoami)|g" suckless/slock/config.h
+# for i in ./suckless/*; do ( cd $i; sudo make install clean; cd .. ); done
