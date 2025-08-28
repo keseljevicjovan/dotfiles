@@ -2,15 +2,16 @@
 
 This repository contains my personal dotfiles and configuration for:
 
-- picom
-- dunst
-- ~~neovim~~ (moved to [init.lua](https://github.com/keseljevicjovan/init.lua))
 - X (xinit, xresources)
-- tmux
-- lf
-- zsh
-- zathura
+- dunst
 - git
+- lf
+- mpv
+- picom
+- tmux
+- zathura
+- zsh
+- ~~neovim~~ (moved to [init.lua](https://github.com/keseljevicjovan/init.lua))
 
 There are also scripts that i use for status bar (dwmblocks).
 
