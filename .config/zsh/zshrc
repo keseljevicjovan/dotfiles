@@ -28,6 +28,8 @@ alias src="source $HOME/.zshrc"
 alias e="nvim"
 alias sc="nvim $HOME/.local/bin/scripts"
 alias mnt="dmenu_mounter"
+alias wcc='x86_64-w64-mingw32-gcc'
+alias newsboat="newsboat -C $XDG_CONFIG_HOME/newsboat/config -u $XDG_CONFIG_HOME/newsboat/urls -c $XDG_DATA_HOME/newsboat/cache.db"
 
 # Basic auto/tab complete:
 autoload -U compinit
