@@ -38,7 +38,7 @@ ln -sf "$CONFIG/zsh/zshrc" "$HOME/.zshrc"
 ln -sf "$CONFIG/zsh/zprofile" "$HOME/.zprofile"
 ln -sf "$CONFIG/git/gitconfig" "$HOME/.gitconfig"
 
-mkdir -p "$CACHE"/{zsh,slock,nvim} "$HOME/pictures/screenshots"
+mkdir -p "$CACHE"/{zsh,slock,nvim,newsboat} "$HOME/pictures/screenshots"
 touch "$CACHE/xclip_history"
 
 chsh -s "$(command -v zsh)"

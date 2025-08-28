@@ -1,0 +1,32 @@
+#!/bin/sh
+
+url="$1"
+cache_dir="$XDG_CACHE_HOME/newsboat" 
+
+case "$url" in
+  *.mp3|*.mp4|*.m4a|*.ogg|*.flac|*.webm)
+    mpv "$url"
+    ;;
+
+  *youtube.com*|*youtu.be*)
+    mpv --fullscreen --ytdl-raw-options=sub-lang='en',write-auto-sub= \
+      --sub-auto=all \
+      --ytdl-format='bestvideo[height<=1080]+bestaudio/best' "$url"
+    ;;
+
+  *.pdf)
+    file="$cache_dir/$(basename "$url")"
+    [ -f "$file" ] || wget -qO "$file" "$url"
+    zathura "$file"
+    ;;
+
+  *.jpg|*.jpeg|*.png|*.gif|*.webp)
+    file="$cache_dir/$(basename "$url")"
+    [ -f "$file" ] || wget -qO "$file" "$url"
+    nsxiv "$file"
+    ;;
+
+  *)
+    w3m "$url"
+    ;;
+esac
