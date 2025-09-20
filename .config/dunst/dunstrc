@@ -1,51 +1,90 @@
 [global]
-    monitor             = 0
-    follow              = keyboard
-    width               = (200, 300)
-    height              = 200
-    origin              = bottom-right
-    offset              = 8x8
-    notification_limit  = 8
-    icon_corner_radius  = 6
-    transparency        = 20
-    padding             = 6
-    horizontal_padding  = 6
-    text_icon_padding   = 0
-    frame_width         = 1
-    frame_color         = "#aaaaaa"
-    font                = JetBrainsMono Nerd Font 8
-    markup              = full
-    format              = "<b>%s</b>\n%b"
+    monitor                = 0
+    follow                 = none
+    origin                 = top-right
+    offset                 = (10, 30)
 
-    min_icon_size       = 32
-    max_icon_size       = 100
-    sticky_history      = yes
-    history_length      = 10
-    dmenu               = /usr/bin/dmenu -p dunst:
-    browser             = /usr/bin/firefox
-    mouse_left_click    = do_action, close_current
-    mouse_middle_click  = close_all
-    mouse_right_click   = open_url, close_current
+    width                  = 300
+    height                 = (0, 300)
+    notification_limit     = 20
+    gap_size               = 5
 
+    transparency           = 0
+    frame_width            = 2
+    frame_color            = "#aaaaaa"
+    corner_radius          = 0
+    corners                = all
+
+    separator_height       = 2
+    separator_color        = frame
+
+    padding                = 8
+    horizontal_padding     = 8
+    text_icon_padding      = 0
+
+    icon_position          = left
+    min_icon_size          = 32
+    max_icon_size          = 64
+    icon_corner_radius     = 0
+    icon_corners           = all
+    icon_theme             = Adwaita
     enable_recursive_icon_lookup = true
 
+    progress_bar           = true
+    progress_bar_height    = 10
+    progress_bar_frame_width = 1
+    progress_bar_min_width = 150
+    progress_bar_max_width = 300
+    progress_bar_corner_radius = 0
+    progress_bar_corners   = all
+
+    font                   = JetBrainsMono Nerd Font 8
+    line_height            = 0
+    markup                 = full
+    format                 = "<b>%s</b>\n%b"
+    alignment              = left
+    vertical_alignment     = center
+    ellipsize              = middle
+    show_age_threshold     = 60
+
+    sort                   = yes
+    sticky_history         = yes
+    history_length         = 20
+    indicate_hidden        = yes
+
+    always_run_script      = true
+    dmenu                  = /usr/bin/dmenu -p dunst:
+    browser                = /usr/bin/xdg-open
+
+    ignore_dbusclose       = false
+
+    title                  = Dunst
+    class                  = Dunst
+
+    mouse_left_click       = close_current
+    mouse_middle_click     = do_action, close_current
+    mouse_right_click      = close_all
+
+[experimental]
+    per_monitor_dpi = false
+
 [urgency_low]
-    background          = "#222222"
-    foreground          = "#888888"
-    timeout             = 3
-    #default_icon       = /path/to/icon
+    background = "#222222"
+    foreground = "#888888"
+    timeout = 5
+    default_icon = dialog-information
 
 [urgency_normal]
-    background          = "#1f2226"
-    foreground          = "#ffffff"
-    timeout             = 5
+    background = "#1f2226"
+    foreground = "#ffffff"
+    timeout = 5
     override_pause_level = 30
-    #default_icon       = /path/to/icon
+    default_icon = dialog-information
 
 [urgency_critical]
-    background          = "#900000"
-    foreground          = "#ffffff"
-    frame_color         = "#ff0000"
-    timeout             = 0
+    background = "#900000"
+    foreground = "#ffffff"
+    frame_color = "#ff0000"
+    timeout = 0
     override_pause_level = 60
-    #default_icon       = /path/to/icon
+    default_icon = dialog-warning
