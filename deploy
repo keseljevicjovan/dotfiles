@@ -1,53 +1,53 @@
 #!/bin/sh
 set -eu
 
-# Dotfiles
 DOTFILES="$(cd "$(dirname "$0")" && pwd)"
-OLD_CONFIG="$DOTFILES/OLD_CONFIG"
+OLD_CONFIG="$HOME/OLD_CONFIG"
+TIMESTAMP=$(date +%Y%m%d-%H%M%S)
 CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}"
 SCRIPTS="$HOME/.local/bin"
-CACHE=${XDG_CACHE_HOME:-$HOME/.cache}
+CACHE="${XDG_CACHE_HOME:-$HOME/.cache}"
 DATA="${XDG_DATA_HOME:-$HOME/.local/share}"
 
-mkdir -p "$OLD_CONFIG"
+mkdir -p "$OLD_CONFIG" "$SCRIPTS"
+
 for i in "$CONFIG/"*; do
-  [ -d "$i" ] && 
-    mv "$i" "$OLD_CONFIG/$(basename $i)" &&
-    echo "$i -> $OLD_CONFIG/$(basename $i)"
+  [ -d "$i" ] && {
+    base=$(basename "$i")
+    backup_dir="$OLD_CONFIG/${base}_$TIMESTAMP"
+    echo "Backing up $i to $backup_dir"
+    mv "$i" "$backup_dir"
+  }
 done
 
 for i in "$DOTFILES/.config/"*; do
-  cp -r "$i" "$CONFIG/" &&
-    echo "$i -> $CONFIG/"
+  echo "Copying $i to $CONFIG/"
+  rsync -a "$i" "$CONFIG/"
 done
 
-mkdir -p "$SCRIPTS"
-cp -r "$DOTFILES/.local/bin/"* "$SCRIPTS" &&
-  echo "Copied scripts to $SCRIPTS"
+echo "Copying scripts to $SCRIPTS"
+rsync -a "$DOTFILES/local/bin/" "$SCRIPTS/"
 
-[ -f $HOME/.dircolors ] || dircolors -p > $HOME/.dircolors
+[ ! -f "$HOME/.dircolors" ] && dircolors -p > "$HOME/.dircolors"
 
-mkdir -p "$DATA/"{zsh,tmux}/plugins
+mkdir -p "$CACHE"/{zsh,tmux,newsboat,slock,nvim} "$DATA"/{zsh/plugins,tmux/plugins} "$HOME/pictures/screenshots"
+touch "$CACHE/xclip_history"
 
-git clone "https://github.com/sindresorhus/pure.git" "$DATA/zsh/plugins/pure"
-git clone "https://github.com/zsh-users/zsh-autosuggestions.git" "$DATA/zsh/plugins/zsh-autosuggestions"
-git clone "https://github.com/zsh-users/zsh-syntax-highlighting.git" "$DATA/zsh/plugins/zsh-syntax-highlighting"
-git clone "https://github.com/tmux-plugins/tpm" "$DATA/tmux/plugins/tpm"
+[ ! -d "$DATA/zsh/plugins/pure" ] && git clone https://github.com/sindresorhus/pure.git "$DATA/zsh/plugins/pure"
+[ ! -d "$DATA/zsh/plugins/zsh-autosuggestions" ] && git clone https://github.com/zsh-users/zsh-autosuggestions.git "$DATA/zsh/plugins/zsh-autosuggestions"
+[ ! -d "$DATA/zsh/plugins/zsh-syntax-highlighting" ] && git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$DATA/zsh/plugins/zsh-syntax-highlighting"
+[ ! -d "$DATA/tmux/plugins/tpm" ] && git clone https://github.com/tmux-plugins/tpm "$DATA/tmux/plugins/tpm"
 
 ln -sf "$CONFIG/zsh/zshrc" "$HOME/.zshrc"
 ln -sf "$CONFIG/zsh/zprofile" "$HOME/.zprofile"
 ln -sf "$CONFIG/git/gitconfig" "$HOME/.gitconfig"
 
-mkdir -p "$CACHE"/{zsh,slock,nvim,newsboat} "$HOME/pictures/screenshots"
-touch "$CACHE/xclip_history"
+[ "$(basename "$SHELL")" != "zsh" ] && chsh -s "$(command -v zsh)"
 
-chsh -s "$(command -v zsh)"
+[ ! -d "$CONFIG/nvim" ] && git clone https://github.com/keseljevicjovan/init.lua "$CONFIG/nvim"
 
-# Neovim
-git clone https://github.com/keseljevicjovan/init.lua "$CONFIG/nvim"
-
-# Suckless software
-#
 # git clone https://github.com/keseljevicjovan/suckless
 # sed -i "s|jovan|$(whoami)|g" suckless/slock/config.h
 # for i in ./suckless/*; do ( cd $i; sudo make install clean; cd .. ); done
+
+echo "Deploy successful! Your old configs are located at $OLD_CONFIG"
