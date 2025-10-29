@@ -51,7 +51,7 @@ list_mounted_mtp() {
 if [ "${1#u}" != "$1" ]; then
     DEVS=$(list_mounted_block; list_mounted_mtp)
     [ -z "$DEVS" ] && { dunstify -u normal "Unmount" "No mounted devices found"; exit 0; }
-    SEL=$(echo "$DEVS" | dmenu -vi -i -p "Select device to unmount:") || exit
+    SEL=$(echo "$DEVS" | dmenu_embed -c -vi -i -p "Select device to unmount:") || exit
     if echo "$SEL" | grep -q '^ '; then
         MP=$(echo "$SEL" | awk -F ' at ' '{print $2}')
         if dmenu_sudo fusermount -u "$MP"; then
@@ -76,10 +76,10 @@ list_devs() {
     list_mtp_devs
 }
 
-SEL=$(list_devs | dmenu -vi -i -p "Select device:") || exit
+SEL=$(list_devs | dmenu_embed -c -vi -i -p "Select device:") || exit
 
 if echo "$SEL" | grep -q '^ '; then
-    MP=/mnt/$(ls /mnt | dmenu -vi -i -p "Mount mobile to:") || exit
+    MP=/mnt/$(ls /mnt | dmenu_embed -c -vi -i -p "Mount mobile to:") || exit
     mkdir -p "$MP"
     dmenu_sudo fusermount -u "$MP" 2>/dev/null
     if dmenu_sudo simple-mtpfs -o allow_other,uid=$(id -u),gid=$(id -g) "$MP"; then
@@ -90,7 +90,7 @@ if echo "$SEL" | grep -q '^ '; then
 else
     DEV=$(echo "$SEL" | awk '{print $2}') || exit
     [ -z "$DEV" ] && exit
-    MP=/mnt/$(ls /mnt | dmenu -vi -i -p "Mount $DEV to:") || exit
+    MP=/mnt/$(ls /mnt | dmenu_embed -c -vi -i -p "Mount $DEV to:") || exit
     FSTYPE=$(lsblk -no FSTYPE "$DEV")
     case "$FSTYPE" in
         vfat|exfat|ntfs) OPTS="uid=$(id -u),gid=$(id -g)" ;;

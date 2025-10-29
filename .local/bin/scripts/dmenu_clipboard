@@ -5,7 +5,7 @@ SEP="<NEWLINE>"
 
 case "$1" in
   select)
-    sel=$(tac "$HIST" | dmenu -vi -p "Clipboard history:") &&
+    sel=$(tac "$HIST" | dmenu -bw 0 -vi -p "Clipboard history:") &&
     printf '%s' "$sel" | sed "s/$SEP/\\n/g" | xclip -selection clipboard &&
     dunstify "Copied to clipboard" "$sel"
     ;;

@@ -1,10 +1,10 @@
 #!/bin/sh
 
-WALLPAPERS_DIR="$HOME/.local/share/wallpapers"
+WALLPAPERS_DIR="$HOME/.local/share/wallpapers" && cd $WALLPAPERS_DIR
 
-[ "$1" = nsxiv ] && command -v nsxiv >/dev/null && \
-  SELECTED=$(nsxiv -otb "$WALLPAPERS_DIR"/* | sed "s|$WALLPAPERS_DIR/||") || \
-  SELECTED=$(find "$WALLPAPERS_DIR" -type f \( -iname '*.jpg' -o -iname '*.png' -o -iname '*.jpeg' \) | sed "s|$WALLPAPERS_DIR/||" | dmenu -vi -i -p "Select Wallpaper:")
+command -v nsxiv >/dev/null && \
+  SELECTED=$(nsxiv -otb * | sed "s|$WALLPAPERS_DIR/||") || \
+  SELECTED=$(find -type f -printf "%P\n" | dmenu -vi -i -p "Select Wallpaper:")
 
 [ -n "$SELECTED" ] && (
   feh --bg-scale "$WALLPAPERS_DIR/$SELECTED" && 

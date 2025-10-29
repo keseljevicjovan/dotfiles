@@ -1,3 +1,4 @@
 #!/bin/sh
 
-ssh "$(cut -d',' -f1 ~/.ssh/known_hosts 2>/dev/null | cut -d' ' -f1 | sort -u | dmenu -vi -i -p 'ssh to:' || exit)"
+sel=$(grep -E '^Host ' ~/.ssh/config | awk '{print $2}' | dmenu_embed -c -vi -i -p 'ssh to:')
+[ -n "$sel" ] && ssh "$sel"

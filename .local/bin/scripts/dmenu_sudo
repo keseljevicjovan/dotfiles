@@ -1,4 +1,4 @@
 #!/bin/sh
 
 [ $# -eq 0 ] && exit 1
-sudo -n -v 2>/dev/null && exec sudo "$@" || (while ! echo "$(dmenu -nf "$(xrdb -query | grep dmenu.normbgcolor | awk '{print $2}')"  -p "[sudo] password for $USER:" <&-)" | sudo -S -v >/dev/null 2>&1; do :; done && exec sudo "$@")
+sudo -n -v 2>/dev/null && exec sudo "$@" || (while ! echo "$(dmenu -nf "$(xrdb -query | grep dmenu.normbgcolor | awk '{print $2}')" -bw 0 -p "[sudo] password for $USER:" <&-)" | sudo -S -v >/dev/null 2>&1; do :; done && exec sudo "$@")

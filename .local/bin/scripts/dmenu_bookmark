@@ -3,6 +3,6 @@
 BOOKMARKS_FILE="$HOME/.cache/bookmarks_list.txt"
 
 [ -f "$BOOKMARKS_FILE" ] &&
-  CHOICE=$(cat "$BOOKMARKS_FILE" | dmenu -vi -i -p "Open bookmark:") &&
+  CHOICE=$(cat "$BOOKMARKS_FILE" | dmenu -c -vi -i -p "Open bookmark:") &&
   [ "$CHOICE" ] &&
     xdotool type "${CHOICE##* }" &
