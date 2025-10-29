@@ -1,0 +1,3 @@
+#!/bin/sh
+
+winid=$(xdotool getactivewindow); dmenu ${winid:+-w $winid} "$@"
