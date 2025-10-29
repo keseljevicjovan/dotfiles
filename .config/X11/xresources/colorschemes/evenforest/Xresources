@@ -1,0 +1,34 @@
+/* Evenforest Dark: */
+st.color0:     #2b3339
+st.color1:     #e67e80
+st.color2:     #a7c080
+st.color3:     #dbbc7f
+st.color4:     #7fbbb3
+st.color5:     #d699b6
+st.color6:     #83c092
+st.color7:     #d3c6aa
+st.color8:     #859289
+st.color9:     #e67e80
+st.color10:    #a7c080
+st.color11:    #dbbc7f
+st.color12:    #7fbbb3
+st.color13:    #d699b6
+st.color14:    #83c092
+st.color15:    #fdf6e3
+st.background: #2b3339
+st.foreground: #d3c6aa
+
+dwm.normbgcolor:     #2b3339
+dwm.normbordercolor: #3a4349
+dwm.normfgcolor:     #9da9a0
+dwm.selbgcolor:      #7fbbb3
+dwm.selbordercolor:  #a7c080
+dwm.selfgcolor:      #2b3339
+
+dmenu.normbgcolor:   #2b3339
+dmenu.normfgcolor:   #9da9a0
+dmenu.selbgcolor:    #7fbbb3
+dmenu.selfgcolor:    #2b3339
+
+Nsxiv.window.background: #2b3339
+Nsxiv.window.foreground: #a7c080
