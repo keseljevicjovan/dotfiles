@@ -26,7 +26,7 @@ for i in "$DOTFILES/.config/"*; do
 done
 
 echo "Copying scripts to $SCRIPTS"
-rsync -a "$DOTFILES/local/bin/" "$SCRIPTS/"
+rsync -a "$DOTFILES/.local/bin/" "$SCRIPTS/"
 
 [ ! -f "$HOME/.dircolors" ] && dircolors -p > "$HOME/.dircolors"
 
