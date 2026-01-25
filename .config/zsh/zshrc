@@ -16,11 +16,11 @@ setopt INC_APPEND_HISTORY_TIME  # append command to history file immediately aft
 alias history="fc -l 1" # display more than 15 items
 
 # Aliases
+alias ip="ip -c"
 alias ls="ls --color=auto"
 alias grep="grep --color"
 alias lf="lfub"
 alias neofetch="fastfetch"
-#alias run-nvidia="__NV_PRIME_RENDERER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia"
 alias syu="sudo pacman -Syu && kill -37 $(pidof dwmblocks)"
 alias yt-mp3="yt-dlp -x --audio-format mp3"
 alias c="xclip -selection clipboard"
@@ -28,7 +28,7 @@ alias src="source $HOME/.zshrc"
 alias e="nvim"
 alias sc="nvim $HOME/.local/bin/scripts"
 alias mnt="dmenu_mounter"
-alias wcc='x86_64-w64-mingw32-gcc'
+#alias wcc='x86_64-w64-mingw32-gcc'
 alias newsboat="newsboat -C $XDG_CONFIG_HOME/newsboat/config -u $XDG_CONFIG_HOME/newsboat/urls -c $XDG_DATA_HOME/newsboat/cache.db"
 
 # Basic auto/tab complete:
@@ -93,5 +93,5 @@ bindkey '^[[P' delete-char
 eval "$(dircolors $HOME/.dircolors)"
 
 # Plugins
-source $XDG_DATA_HOME/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $XDG_DATA_HOME/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
 source $XDG_DATA_HOME/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh

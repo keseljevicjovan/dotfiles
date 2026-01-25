@@ -12,5 +12,10 @@ export QT_QPA_PLATFORMTHEME=kvantum
 export WINEPREFIX="$HOME/games/wineprefixes/Global"
 export _JAVA_AWT_WM_NONREPARENTING=1
 export MANPAGER='nvim +Man!'
+export PASSWORD_STORE_DIR="$XDG_DATA_HOME/password-store"
+
+export BROWSER=firefox
+export EDITOR='nvim'
+export VISUAL="$EDITOR"
 
 [ "$(tty)" = "/dev/tty1" ] && ! pidof -s Xorg >/dev/null 2>&1 && exec startx "$XINITRC"
