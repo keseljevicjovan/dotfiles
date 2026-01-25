@@ -1,0 +1,4 @@
+#!/bin/sh
+
+password=$(find ${PASSWORD_STORE_DIR:-"$HOME/.password-store"} -name "*.gpg" -printf "%P\n" | sed 's/\.gpg$//' | dmenu -vi -i -c -p "pass:")
+[ -n "$password" ] && pass show -c "$password" 2>/dev/null
