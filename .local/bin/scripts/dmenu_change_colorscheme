@@ -9,7 +9,10 @@ tmux source-file "$HOME/.config/tmux/themes/$SELECTED_THEME.conf"
 
 xrdb -merge "$THEMES_DIR/${SELECTED_THEME}/Xresources" && (
     xdotool key super+F5
-    [ "$1" -ne 0 ] 2>/dev/null && pidof st | xargs kill -SIGUSR1
+    [ "$1" -ne 0 ] 2>/dev/null && ( 
+      xrdb -merge "$HOME/.config/X11/xresources/core/transparency/Xresources"
+      pidof st | xargs kill -SIGUSR1
+  )
 )
 
 slockbg

@@ -1,4 +1,4 @@
 #!/bin/sh
 
 updates=$(checkupdates | wc -l)
-[ "$updates" -gt 0 ] && echo "󰏖 $updates updates" || echo ""
+[ "$updates" -gt 0 ] && echo " 󰏖 $updates updates" || echo ""

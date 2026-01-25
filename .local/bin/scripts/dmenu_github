@@ -22,7 +22,7 @@ case "$ACTION" in
     ;;
 
   Create)
-    NAME=$(dmenu_embed -c -i -vi -p "New repo name:" < /dev/null)
+    NAME=$(dmenu_embed -i -vi -p "New repo name:" < /dev/null)
     PRIVATE=$( [ "$(printf "No\nYes" | dmenu_embed -c -i -vi -p "Private repository?")" = "Yes" ] && echo true || echo false )
     [ -z "$NAME" ] && exit 0
     URL=$(curl -s -X POST -H "Authorization: token $TOKEN" -d '{"name":"'$NAME'","private":'$PRIVATE'}' https://api.github.com/user/repos | jq -r '.html_url // empty')

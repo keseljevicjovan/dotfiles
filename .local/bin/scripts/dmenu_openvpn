@@ -1,4 +1,4 @@
 #!/bin/sh
 
-sel=$(find ~/.vpn -type f -name '*.ovpn' 2>/dev/null | sed 's|.*/||' | dmenu_embed -c -vi -i -p 'Choose VPN: ')
+sel=$(find ~/.vpn -type f -name '*.ovpn' 2>/dev/null | sed 's|.*/||' | dmenu_embed -c -vi -i -p 'vpn:')
 [ -n "$sel" ] && dmenu_sudo openvpn --config ~/.vpn/"$sel" --daemon
