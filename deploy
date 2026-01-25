@@ -34,8 +34,8 @@ mkdir -p "$CACHE"/{zsh,tmux,newsboat,slock,nvim} "$DATA"/{zsh/plugins,tmux/plugi
 touch "$CACHE/xclip_history"
 
 [ ! -d "$DATA/zsh/plugins/pure" ] && git clone https://github.com/sindresorhus/pure.git "$DATA/zsh/plugins/pure"
-[ ! -d "$DATA/zsh/plugins/fast-zsh-autosuggestions" ] && git clone https://github.com/zdharma-continuum/fast-syntax-highlighting "$DATA/zsh/plugins/fast-zsh-autosuggestions"
-[ ! -d "$DATA/zsh/plugins/zsh-syntax-highlighting" ] && git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$DATA/zsh/plugins/zsh-syntax-highlighting"
+[ ! -d "$DATA/zsh/plugins/fast-syntax-highlighting" ] && git clone https://github.com/zdharma-continuum/fast-syntax-highlighting "$DATA/zsh/plugins/fast-syntax-highlighting"
+[ ! -d "$DATA/zsh/plugins/zsh-autosuggestions" ] && git clone https://github.com/zsh-users/zsh-autosuggestions.git "$DATA/zsh/plugins/zsh-autosuggestions"
 [ ! -d "$DATA/tmux/plugins/tpm" ] && git clone https://github.com/tmux-plugins/tpm "$DATA/tmux/plugins/tpm"
 
 ln -sf "$CONFIG/zsh/zshrc" "$HOME/.zshrc"
