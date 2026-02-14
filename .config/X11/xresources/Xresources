@@ -3,11 +3,12 @@
 #include "core/transparency/Xresources"
 
 /* colorscheme */
+#include "colorschemes/monochrome/Xresources"
 !! #include "colorschemes/catppuccin/Xresources"
 !! #include "colorschemes/default/Xresources"
 !! #include "colorschemes/dracula/Xresources"
 !! #include "colorschemes/gray/Xresources"
-#include "colorschemes/gruvbox-dark/Xresources"
+!! #include "colorschemes/gruvbox-dark/Xresources"
 !! #include "colorschemes/nord/Xresources"
 !! #include "colorschemes/onedark/Xresources"
 !! #include "colorschemes/orange/Xresources"

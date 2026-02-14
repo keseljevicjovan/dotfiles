@@ -1,5 +1,5 @@
 !! Transparency (0-1)
-!! st.alpha:        0.8
+st.alpha:           1.0
 !! dmenu.alpha:     0.8
 !! dwm.baralpha_fg: 0.8
 !! dwm.baralpha_bg: 0.8

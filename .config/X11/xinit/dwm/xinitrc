@@ -1,4 +1,4 @@
-feh --bg-scale $HOME/.local/share/wallpapers/minimalistic-nature/forest.jpg
+feh --bg-scale $HOME/.local/share/wallpapers/random/blank.png
 dunst &
 unclutter &
 picom &

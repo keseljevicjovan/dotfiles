@@ -1,0 +1,34 @@
+/* Monochrome: */
+st.color0:     #1E1E1E
+st.color1:     #FF4242
+st.color2:     #608B4E
+st.color3:     #FFFF66
+st.color4:     #569CD6
+st.color5:     #C678DD
+st.color6:     #56B6C2
+st.color7:     #D4D4D4
+st.color8:     #3C3C3C
+st.color9:     #FF5757
+st.color10:    #8C9B6D
+st.color11:    #FFFF99
+st.color12:    #669FF6
+st.color13:    #CC77FD
+st.color14:    #6EC6C6
+st.color15:    #E0E0E0
+st.background: black
+st.foreground: gray90
+
+dwm.normbgcolor:     #000000
+dwm.normbordercolor: #000000
+dwm.normfgcolor:     #FFFFFF
+dwm.selbgcolor:      #FFFFFF
+dwm.selbordercolor:  #FFFFFF
+dwm.selfgcolor:      #000000
+
+dmenu.normbgcolor:  #1a1a1a
+dmenu.normfgcolor:  #e0e0e0
+dmenu.selbgcolor:   #e0e0e0
+dmenu.selfgcolor:   #1a1a1a
+
+Nsxiv.window.background: #111111
+Nsxiv.window.foreground: #FFFFFF
