@@ -19,7 +19,7 @@ st.background: black
 st.foreground: gray90
 
 dwm.normbgcolor:     #000000
-dwm.normbordercolor: #000000
+dwm.normbordercolor: #2a2a2a
 dwm.normfgcolor:     #FFFFFF
 dwm.selbgcolor:      #FFFFFF
 dwm.selbordercolor:  #FFFFFF

@@ -2,52 +2,52 @@
 set -eu
 
 DOTFILES="$(cd "$(dirname "$0")" && pwd)"
-OLD_CONFIG="$HOME/OLD_CONFIG"
-TIMESTAMP=$(date +%Y%m%d-%H%M%S)
 CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}"
 SCRIPTS="$HOME/.local/bin"
 CACHE="${XDG_CACHE_HOME:-$HOME/.cache}"
 DATA="${XDG_DATA_HOME:-$HOME/.local/share}"
 
-mkdir -p "$OLD_CONFIG" "$SCRIPTS"
+(command -v pacman > /dev/null) || (echo "You can't deploy on non Arch-based distro" && exit 1)
 
-for i in "$CONFIG/"*; do
-  [ -d "$i" ] && {
-    base=$(basename "$i")
-    backup_dir="$OLD_CONFIG/${base}_$TIMESTAMP"
-    echo "Backing up $i to $backup_dir"
-    mv "$i" "$backup_dir"
-  }
-done
+sudo pacman -Syu git zsh neovim tmux picom openssh lf firefox dunst scrot ueberzugpp zathura zathura-pdf-poppler feh mpv pacman-contrib pipewire-pulse imagemagick ffmpegthumbnailer playerctl pulsemixer unclutter xclip ttf-jetbrains-mono-nerd
+
+git clone https://aur.archlinux.org/aurutils /tmp/aurutils && cd /tmp/aurutils && makepkg -si
+sudo mkdir -p /var/cache/pacman/aur && sudo chown "$USER" /var/cache/pacman/aur
+cd /var/cache/pacman/aur && repo-add aur.db.tar.gz
+grep -q "^\[aur\]" /etc/pacman.conf || printf "\n[aur]\nSigLevel = Optional TrustAll\nServer = file:///var/cache/pacman/aur\n" | sudo tee -a /etc/pacman.conf > /dev/null
+
+mkdir -p "$CONFIG" "$SCRIPTS"
 
 for i in "$DOTFILES/.config/"*; do
-  echo "Copying $i to $CONFIG/"
-  rsync -a "$i" "$CONFIG/"
+  ln -sf "$i" "$CONFIG/"
 done
 
-echo "Copying scripts to $SCRIPTS"
-rsync -a "$DOTFILES/.local/bin/" "$SCRIPTS/"
+for i in "$DOTFILES/.local/bin/"*; do
+    ln -sf "$i" "$SCRIPTS/"
+done
 
-[ ! -f "$HOME/.dircolors" ] && dircolors -p > "$HOME/.dircolors"
+[ ! -f "$CONFIG/.dircolors" ] && dircolors -p > "$CONFIG/.dircolors"
 
-mkdir -p "$CACHE"/{zsh,tmux,newsboat,slock,nvim} "$DATA"/{zsh/plugins,tmux/plugins} "$HOME/pictures/screenshots"
+mkdir -p "$CACHE"/{zsh,tmux,newsboat,slock,nvim} "$DATA"/{zsh/{plugins,themes},tmux/plugins} "$HOME/pictures/screenshots"
 touch "$CACHE/xclip_history"
 
-[ ! -d "$DATA/zsh/plugins/pure" ] && git clone https://github.com/sindresorhus/pure.git "$DATA/zsh/plugins/pure"
+[ ! -d "$DATA/zsh/themes/pure" ] && git clone https://github.com/sindresorhus/pure.git "$DATA/zsh/themes/pure"
 [ ! -d "$DATA/zsh/plugins/fast-syntax-highlighting" ] && git clone https://github.com/zdharma-continuum/fast-syntax-highlighting "$DATA/zsh/plugins/fast-syntax-highlighting"
 [ ! -d "$DATA/zsh/plugins/zsh-autosuggestions" ] && git clone https://github.com/zsh-users/zsh-autosuggestions.git "$DATA/zsh/plugins/zsh-autosuggestions"
 [ ! -d "$DATA/tmux/plugins/tpm" ] && git clone https://github.com/tmux-plugins/tpm "$DATA/tmux/plugins/tpm"
 
 ln -sf "$CONFIG/zsh/zshrc" "$HOME/.zshrc"
 ln -sf "$CONFIG/zsh/zprofile" "$HOME/.zprofile"
-ln -sf "$CONFIG/git/gitconfig" "$HOME/.gitconfig"
 
 [ "$(basename "$SHELL")" != "zsh" ] && chsh -s "$(command -v zsh)"
 
 [ ! -d "$CONFIG/nvim" ] && git clone https://github.com/keseljevicjovan/init.lua "$CONFIG/nvim"
 
-# git clone https://github.com/keseljevicjovan/suckless
-# sed -i "s|jovan|$(whoami)|g" suckless/slock/config.h
-# for i in ./suckless/*; do ( cd $i; sudo make install clean; cd .. ); done
+aur sync xkblayout-state-git
+sudo pacman -Syu xkblayout-state-git libx11 libxft libxinerama libxrandr libxext libxrender fontconfig freetype2 libexif imlib2 xorg-server xorg-xinit
 
-echo "Deploy successful! Your old configs are located at $OLD_CONFIG"
+[ ! -d "$CONFIG/suckless" ] && git clone https://github.com/keseljevicjovan/suckless "$CONFIG/suckless"
+sed -i "s|jovan|$(whoami)|g" "$CONFIG/suckless/slock/config.h"
+for i in "$CONFIG/suckless"/*; do [ -d "$i" ] && [ -f "$i/Makefile" ] && (cd "$i" && sudo make install clean); done
+
+echo 'Deploy successful! Log out to start using zsh'

@@ -1,5 +1,5 @@
 # Prompt
-fpath+=($XDG_DATA_HOME/zsh/plugins/pure)
+fpath+=($XDG_DATA_HOME/zsh/themes/pure)
 autoload -U promptinit; promptinit
 prompt pure
 
@@ -26,17 +26,17 @@ alias yt-mp3="yt-dlp -x --audio-format mp3"
 alias c="xclip -selection clipboard"
 alias src="source $HOME/.zshrc"
 alias e="nvim"
-alias sc="nvim $HOME/.local/bin/scripts"
+alias sc="lfcd $HOME/.local/bin/scripts"
 alias mnt="dmenu_mounter"
 #alias wcc='x86_64-w64-mingw32-gcc'
 alias newsboat="newsboat -C $XDG_CONFIG_HOME/newsboat/config -u $XDG_CONFIG_HOME/newsboat/urls -c $XDG_DATA_HOME/newsboat/cache.db"
 
 # Basic auto/tab complete:
-autoload -U compinit
+autoload -Uz compinit
 zstyle ':completion:*' menu select
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z} r:|=*'
 zmodload zsh/complist
-compinit
+compinit -d "$XDG_CACHE_HOME/zsh/zcompcache"
 _comp_options+=(globdots) # Include hidden files.
 
 # Vi mode
@@ -71,11 +71,11 @@ bindkey -v '^?' backward-delete-char
 # Define the lfcd function to use lfub (lf with ueberzug)
 lfcd () {
 	tmp="$(mktemp -uq)"
-	trap 'rm -f $tmp >/dev/null 2>&1 && trap - HUP INT QUIT TERM PWR EXIT' HUP INT QUIT TERM PWR EXIT
 	lfub -last-dir-path="$tmp" "$@"
 	if [ -f "$tmp" ]; then
 		dir="$(cat "$tmp")"
 		[ -d "$dir" ] && [ "$dir" != "$(pwd)" ] && cd "$dir"
+    rm -f "$tmp"
 	fi
 }
 
@@ -90,7 +90,7 @@ bindkey -s '^G' 'dmenu_github\n'
 bindkey '^[[P' delete-char
 
 # Colors
-eval "$(dircolors $HOME/.dircolors)"
+eval "$(dircolors -b "$XDG_CONFIG_HOME/dircolors/dircolors")"
 
 # Plugins
 source $XDG_DATA_HOME/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh

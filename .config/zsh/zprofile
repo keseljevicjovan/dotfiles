@@ -6,16 +6,18 @@ export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_STATE_HOME="$HOME/.local/state"
 export XINITRC="$XDG_CONFIG_HOME/X11/xinit/dwm/xinitrc"
 
-export GTK_THEME="Adwaita:dark"
+export GTK_THEME='Adwaita:dark'
 export QT_QPA_PLATFORMTHEME=kvantum
 
 export WINEPREFIX="$HOME/games/wineprefixes/Global"
 export _JAVA_AWT_WM_NONREPARENTING=1
 export MANPAGER='nvim +Man!'
+export AUR_PAGER=lf
 export PASSWORD_STORE_DIR="$XDG_DATA_HOME/password-store"
 
+export TERMINAL=st
 export BROWSER=firefox
-export EDITOR='nvim'
+export EDITOR=nvim
 export VISUAL="$EDITOR"
 
 [ "$(tty)" = "/dev/tty1" ] && ! pidof -s Xorg >/dev/null 2>&1 && exec startx "$XINITRC"
