@@ -1,6 +1,9 @@
 #!/bin/sh
 set -eu
 
+sudo -v
+while true; do sudo -n true; sleep 60; done 2>/dev/null &
+
 DOTFILES="$(cd "$(dirname "$0")" && pwd)"
 CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}"
 SCRIPTS="$HOME/.local/bin"
@@ -9,14 +12,14 @@ DATA="${XDG_DATA_HOME:-$HOME/.local/share}"
 
 (command -v pacman > /dev/null) || (echo "You can't deploy on non Arch-based distro" && exit 1)
 
-sudo pacman -Syu git zsh neovim tmux picom openssh lf firefox dunst scrot ueberzugpp zathura zathura-pdf-poppler feh mpv pacman-contrib pipewire-pulse imagemagick ffmpegthumbnailer playerctl pulsemixer unclutter xclip ttf-jetbrains-mono-nerd
+sudo pacman -Syu git zsh neovim tmux picom openssh lf firefox dunst scrot ueberzugpp zathura zathura-pdf-poppler feh mpv pacman-contrib pipewire-pulse imagemagick ffmpegthumbnailer playerctl pulsemixer unclutter xclip ttf-jetbrains-mono-nerd libnotify firefox-tridactyl
 
 git clone https://aur.archlinux.org/aurutils /tmp/aurutils && cd /tmp/aurutils && makepkg -si
 sudo mkdir -p /var/cache/pacman/aur && sudo chown "$USER" /var/cache/pacman/aur
 cd /var/cache/pacman/aur && repo-add aur.db.tar.gz
 grep -q "^\[aur\]" /etc/pacman.conf || printf "\n[aur]\nSigLevel = Optional TrustAll\nServer = file:///var/cache/pacman/aur\n" | sudo tee -a /etc/pacman.conf > /dev/null
 
-mkdir -p "$CONFIG" "$SCRIPTS"
+mkdir -p "$CONFIG" "$SCRIPTS" "$CONFIG/dircolors"
 
 for i in "$DOTFILES/.config/"*; do
   ln -sf "$i" "$CONFIG/"
@@ -26,7 +29,7 @@ for i in "$DOTFILES/.local/bin/"*; do
     ln -sf "$i" "$SCRIPTS/"
 done
 
-[ ! -f "$CONFIG/.dircolors" ] && dircolors -p > "$CONFIG/.dircolors"
+[ ! -f "$CONFIG/dircolors/dircolors" ] && dircolors -p > "$CONFIG/dircolors/dircolors"
 
 mkdir -p "$CACHE"/{zsh,tmux,newsboat,slock,nvim} "$DATA"/{zsh/{plugins,themes},tmux/plugins} "$HOME/pictures/screenshots"
 touch "$CACHE/xclip_history"
@@ -43,6 +46,7 @@ ln -sf "$CONFIG/zsh/zprofile" "$HOME/.zprofile"
 
 [ ! -d "$CONFIG/nvim" ] && git clone https://github.com/keseljevicjovan/init.lua "$CONFIG/nvim"
 
+export AUR_PAGER=nvim
 aur sync xkblayout-state-git
 sudo pacman -Syu xkblayout-state-git libx11 libxft libxinerama libxrandr libxext libxrender fontconfig freetype2 libexif imlib2 xorg-server xorg-xinit
 
