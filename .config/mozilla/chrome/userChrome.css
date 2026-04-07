@@ -1,0 +1,26 @@
+#TabsToolbar { display: none !important; }
+#sidebar-box #sidebar-header { display: none !important; }
+
+* { border-radius: 0px !important; }
+
+#tabbrowser-tabs {
+  counter-reset: tab-counter;
+}
+
+.tabbrowser-tab {
+  counter-increment: tab-counter;
+  position: relative;
+}
+
+.tabbrowser-tab::after {
+  content: counter(tab-counter);
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
+  font-size: 10px;
+  color: white;
+  background: rgba(0,0,0,0.6);
+  padding: 1px 4px;
+  border-radius: 3px;
+  pointer-events: none;
+}
