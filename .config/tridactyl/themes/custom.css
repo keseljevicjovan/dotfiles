@@ -1,0 +1,38 @@
+:root {
+  --tridactyl-bg: #000000 !important;
+  --tridactyl-fg: #ffffff !important;
+  --tridactyl-cmdl-bg: #1a1a1a !important;
+  --tridactyl-cmdl-fg: #e0e0e0 !important;
+  --tridactyl-cmplt-bg: #1a1a1a !important;
+  --tridactyl-cmplt-fg: #e0e0e0 !important;
+}
+
+:root #cmdline_iframe {
+    position: fixed !important;
+    top: 50vh !important;
+    left: 50vw !important;
+    transform: translate(-50%, -50%) !important;
+    z-index: 2147483647 !important;
+    width: 80% !important;
+}
+
+:root #completions .sectionHeader {
+    background: unset;
+}
+
+:root #command-line-holder {
+    order: 1;
+}
+
+#cmdline_iframe.hidden {
+    display: none !important;
+}
+
+#completions {
+    order: 2 !important;
+}
+
+.optionContainer .option.focused {
+    background: #e0e0e0 !important;
+    color: #1a1a1a !important;
+}

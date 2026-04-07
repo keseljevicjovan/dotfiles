@@ -1,0 +1,7 @@
+bind K tabmove -1
+bind J tabmove +1
+
+bind <A-j> tabnext
+bind <A-k> tabprev
+
+colorscheme custom
