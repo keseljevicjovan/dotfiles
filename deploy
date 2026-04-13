@@ -12,7 +12,7 @@ DATA="${XDG_DATA_HOME:-$HOME/.local/share}"
 
 (command -v pacman > /dev/null) || (echo "You can't deploy on non Arch-based distro" && exit 1)
 
-sudo pacman -Syu git zsh neovim tmux picom openssh lf firefox dunst scrot ueberzugpp zathura zathura-pdf-poppler feh mpv pacman-contrib pipewire-pulse imagemagick ffmpegthumbnailer playerctl pulsemixer unclutter xclip ttf-jetbrains-mono-nerd libnotify firefox-tridactyl
+sudo pacman -Syu git zsh neovim tmux picom openssh lf firefox dunst scrot ueberzugpp zathura zathura-pdf-poppler feh mpv pacman-contrib pipewire-pulse imagemagick ffmpegthumbnailer playerctl pulsemixer unclutter xclip ttf-jetbrains-mono-nerd libnotify firefox-tridactyl gnome-themes-extra
 
 git clone https://aur.archlinux.org/aurutils /tmp/aurutils && cd /tmp/aurutils && makepkg -si
 sudo mkdir -p /var/cache/pacman/aur && sudo chown "$USER" /var/cache/pacman/aur
@@ -23,6 +23,12 @@ mkdir -p "$CONFIG" "$SCRIPTS" "$CONFIG/dircolors"
 
 for i in "$DOTFILES/.config/"*; do
   ln -sf "$i" "$CONFIG/"
+done
+
+for i in "$CONFIG/mozilla/firefox/"*.default*; do
+  for k in "$DOTFILES/browser/"*; do 
+    ln -sf $k $i
+  done
 done
 
 for i in "$DOTFILES/.local/bin/"*; do

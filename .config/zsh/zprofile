@@ -6,9 +6,6 @@ export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_STATE_HOME="$HOME/.local/state"
 export XINITRC="$XDG_CONFIG_HOME/X11/xinit/dwm/xinitrc"
 
-export GTK_THEME='Adwaita:dark'
-export QT_QPA_PLATFORMTHEME=kvantum
-
 export WINEPREFIX="$HOME/games/wineprefixes/Global"
 export _JAVA_AWT_WM_NONREPARENTING=1
 export MANPAGER='nvim +Man!'
