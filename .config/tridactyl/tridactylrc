@@ -5,3 +5,5 @@ bind <A-j> tabnext
 bind <A-k> tabprev
 
 colorscheme custom
+
+set completionfuzziness 1

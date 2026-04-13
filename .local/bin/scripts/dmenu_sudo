@@ -1,4 +1,3 @@
 #!/bin/sh
 
-[ $# -eq 0 ] && exit 1
-sudo -n -v 2>/dev/null && exec sudo "$@" || (while ! echo "$(dmenu -nf "$(xrdb -query | grep dmenu.normbgcolor | awk '{print $2}')" -bw 0 -p "[sudo] password for $USER:" <&-)" | sudo -S -v >/dev/null 2>&1; do :; done && exec sudo "$@")
+[ $# -eq 0 ] && exit 1; sudo -n -v 2>/dev/null && exec sudo "$@" || (i=0; while [ "$i" -lt 3 ]; do pass=$(dmenu -nf "$(xrdb -query | awk '/dmenu.normbgcolor/ {print $2}')" -bw 0 -p "[sudo] password for $USER:" < /dev/null); [ -z "$pass" ] && exit 1; echo "$pass" | sudo -S -v >/dev/null 2>&1 && exec sudo "$@"; i=$((i+1)); done; exit 1)
