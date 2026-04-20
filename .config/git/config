@@ -7,3 +7,4 @@
   helper = libsecret
 [core]
   editor = nvim
+  pager  = nvim +Man! -c 'set syntax=git'

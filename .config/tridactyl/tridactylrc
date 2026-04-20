@@ -1,9 +1,11 @@
-bind K tabmove -1
-bind J tabmove +1
+colorscheme custom
+
+bind <A-K> tabmove -1
+bind <A-J> tabmove +1
 
 bind <A-j> tabnext
 bind <A-k> tabprev
 
-colorscheme custom
+bind <A-Tab> tab #
 
 set completionfuzziness 1
