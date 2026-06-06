@@ -45,6 +45,9 @@ map X !$f
 map dd cut
 map D delete
 
-map Y $mime=$(file --mime-type -Lb "$f"); xclip -selection clipboard -t "$mime" -i "$f"
+cmd copyfile ${{
+    [ -n "$WAYLAND_DISPLAY" ] && wl-copy < "$f" || xclip -selection clipboard -t "$(file --mime-type -Lb "$f")" -i "$f"
+}}
+map Y :copyfile
 
 map e $nvim "$f"

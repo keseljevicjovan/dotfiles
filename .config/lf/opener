@@ -4,17 +4,25 @@ file="$1"
 mime=$(file --mime-type -Lb "$file")
 
 open_zathura(){ 
-  (command -v "zathura" > /dev/null 2>&1; ) && (zathura "$file" && pkill zathura; exit 0;); 
+    command -v "zathura" > /dev/null 2>&1 && zathura "$file" && pkill zathura
+}
+
+open_image(){ 
+    if [ -n "$WAYLAND_DISPLAY" ]; then
+        exec swayimg "$file"
+    else
+        exec nsxiv -ba "$file"
+    fi
 }
 
 case "$file" in
-  *.m3u|*.m3u8) exec mpv "$file" ;;
+    *.m3u|*.m3u8) exec mpv "$file" ;;
 esac
 
 case "$mime" in
     text/*)     exec nvim "$file" ;;
     text/html)  exec firefox "$file" ;;
-    image/*)    command -v nsxiv >/dev/null && exec nsxiv -ba "$file" || exec feh "$file" ;;
+    image/*)    open_image ;;
     audio/*)    exec mpv "$file" ;;
     video/*)    exec mpv "$file" ;;
     application/pdf) open_zathura ;;
