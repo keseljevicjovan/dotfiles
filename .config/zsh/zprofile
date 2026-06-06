@@ -5,6 +5,7 @@ export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_STATE_HOME="$HOME/.local/state"
 export XINITRC="$XDG_CONFIG_HOME/X11/xinit/dwm/xinitrc"
+export WINITRC="$XDG_CONFIG_HOME/wayland/dwl/init"
 
 export WINEPREFIX="$HOME/games/wineprefixes/Global"
 export _JAVA_AWT_WM_NONREPARENTING=1
@@ -17,4 +18,5 @@ export BROWSER=firefox
 export EDITOR=nvim
 export VISUAL="$EDITOR"
 
-[ "$(tty)" = "/dev/tty1" ] && ! pidof -s Xorg >/dev/null 2>&1 && exec startx "$XINITRC"
+# [ "$(tty)" = "/dev/tty1" ] && ! pidof -s Xorg >/dev/null 2>&1 && exec startx "$XINITRC"
+[ "$(tty)" = "/dev/tty1" ] && exec dbus-run-session dwl -s "$WINITRC & dwlb"
