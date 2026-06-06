@@ -1,0 +1,12 @@
+#!/bin/sh
+
+case "$1" in
+    play-pause) playerctl play-pause ;;
+    next) playerctl next ;;
+    prev) playerctl previous ;;
+    mute) wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle ;;
+    volup) wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+ --limit 1.5 ;;
+    voldown) wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%- ;;
+esac
+
+kill -35 $(pidof someblocks)
