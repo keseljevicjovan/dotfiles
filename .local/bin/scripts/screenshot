@@ -4,9 +4,20 @@ SCREENSHOTS_DIR=~/pictures/screenshots
 TIMESTAMP=$(date '+%Y-%m-%d-%H%M%S')
 FILENAME="$SCREENSHOTS_DIR/$TIMESTAMP.png"
 
-[ "$1" = "select" ] && scrot -s "$FILENAME" || ( [ "$1" != "select" ] && scrot "$FILENAME" )
+if [ -n "$WAYLAND_DISPLAY" ]; then
+  case "$1" in
+    select) grim -g "$(slurp)" "$FILENAME" ;;
+    all)    grim "$FILENAME" ;;
+    *)      grim -o "$(dwlmsg -w 2>/dev/null | grep -m1 "selmon 1" | cut -d' ' -f1)" "$FILENAME" ;;
+  esac
+  [ -f "$FILENAME" ] && wl-copy < "$FILENAME"
+else
+  case "$1" in
+    select) scrot -s "$FILENAME" ;;
+    all)    scrot "$FILENAME" ;;
+    *)      scrot -u "$FILENAME" ;; # TODO: Screenshot only selected monitor, not all
+  esac
+  [ -f "$FILENAME" ] && xclip -selection clipboard -t image/png -i "$FILENAME"
+fi
 
-[ -f "$FILENAME" ] && {
-    dunstify -i "$FILENAME" "Screenshot saved" "Screenshot $TIMESTAMP saved at $SCREENSHOTS_DIR"
-    xclip -selection clipboard -t image/png -i "$FILENAME"
-} || dunstify "Screenshot failed" "Screenshot was not saved."
+[ -f "$FILENAME" ] && dunstify -i "$FILENAME" "Screenshot saved" "$TIMESTAMP" || dunstify "Screenshot failed"
