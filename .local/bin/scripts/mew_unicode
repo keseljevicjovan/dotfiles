@@ -1,0 +1,10 @@
+#!/bin/sh
+
+chosen=$(cat ~/.local/share/emoji/* | mew -i | sed "s/ .*//")
+
+[ -z "$chosen" ] && exit
+
+[ -n "$1" ] && xdotool type "$chosen" || {
+	printf "%s" "$chosen" | wl-copy
+	dunstify "'$chosen' copied to clipboard."
+}

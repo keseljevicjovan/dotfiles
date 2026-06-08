@@ -9,4 +9,4 @@ case "$1" in
     voldown) wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%- ;;
 esac
 
-kill -35 $(pidof someblocks)
+[ -n "$WAYLAND_DISPLAY" ] && kill -35 "$(pidof someblocks)" || kill -35 "$(pidof dwmblocks)"

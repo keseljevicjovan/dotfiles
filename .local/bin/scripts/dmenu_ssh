@@ -1,4 +1,4 @@
 #!/bin/sh
 
-sel=$(grep -E '^Host ' ~/.ssh/config | awk '{print $2}' | dmenu_embed -c -vi -i -p 'ssh to:')
+sel=$(grep -E '^Host ' ~/.ssh/config | awk '{print $2}' | grep -v '^\*$' | dmenu_embed -c -vi -i -p 'ssh to:')
 [ -n "$sel" ] && ssh "$sel"

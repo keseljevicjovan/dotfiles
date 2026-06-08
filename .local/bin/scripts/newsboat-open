@@ -23,7 +23,10 @@ case "$url" in
   *.jpg|*.jpeg|*.png|*.gif|*.webp)
     file="$cache_dir/$(basename "$url")"
     [ -f "$file" ] || wget -qO "$file" "$url"
-    nsxiv "$file"
+    case "$XDG_SESSION_TYPE" in
+      wayland) swayimg "$file" ;;
+      x11) nsxiv "$file" ;;
+    esac
     ;;
 
   *)

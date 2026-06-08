@@ -1,16 +1,16 @@
 #!/bin/sh
 
-HIST="$HOME/.cache/clip_history"
+HIST="$HOME/.cache/clipboard_history"
 SEP="<NEWLINE>"
 
 case "$1" in
   select)
-    sel=$(tac "$HIST" | dmenu -bw 0 -vi -p "Clipboard history:") &&
-    printf '%s' "$sel" | sed "s/$SEP/\\n/g" | xclip -selection clipboard &&
+    sel=$(tac "$HIST" | mew -p "Clipboard history:") &&
+    printf '%s' "$sel" | sed "s/$SEP/\\n/g" | wl-copy &&
     dunstify "Copied to clipboard" "$sel"
     ;;
   save)
-    clip=$(xclip -o -selection clipboard) &&
+    clip=$(wl-paste) &&
     [ -n "$clip" ] &&
     esc=$(printf '%s' "$clip" | sed ":a;N;\$!ba;s/\\n/$SEP/g") &&
     grep -Fxq "$esc" "$HIST" || echo "$esc" >> "$HIST" &&

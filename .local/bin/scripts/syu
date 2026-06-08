@@ -1,0 +1,4 @@
+#!/bin/sh
+
+sudo pacman -Syu || exit
+[ -n "$WAYLAND_DISPLAY" ] && kill -37 "$(pidof someblocks)" || kill -37 "$(pidof dwmblocks)"
