@@ -1,0 +1,20 @@
+font=JetBrainsMono Nerd Font 9
+format=<b>%s</b>\n%b
+sort=-time
+output=DP-1
+layer=overlay
+anchor=top-right
+background-color=#222222
+width=300
+height=300
+padding=0,5,10
+border-size=2
+border-color=#ffffff
+#icons=0
+max-icon-size=64
+default-timeout=5000
+ignore-timeout=1
+
+[urgency=high]
+border-color=#bf616a
+default-timeout=0
