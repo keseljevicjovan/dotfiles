@@ -8,7 +8,7 @@ if [ -n "$WAYLAND_DISPLAY" ]; then
   case "$1" in
     select) grim -g "$(slurp)" "$FILENAME" ;;
     all)    grim "$FILENAME" ;;
-    *)      grim -o "$(dwlmsg -w 2>/dev/null | grep -m1 "selmon 1" | cut -d' ' -f1)" "$FILENAME" ;;
+    *)      grim -o "$(dwlmsg -g 2>/dev/null | grep -m1 "selmon 1" | cut -d' ' -f1)" "$FILENAME" ;;
   esac
   [ -f "$FILENAME" ] && wl-copy < "$FILENAME"
 else
