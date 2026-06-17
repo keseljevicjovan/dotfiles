@@ -38,7 +38,7 @@ done
 [ ! -f "$CONFIG/dircolors/dircolors" ] && dircolors -p > "$CONFIG/dircolors/dircolors"
 
 mkdir -p "$CACHE"/{zsh,tmux,newsboat,slock,nvim} "$DATA"/{zsh/{plugins,themes},tmux/plugins} "$HOME/pictures/screenshots"
-touch "$CACHE/xclip_history"
+touch "$CACHE/clipboard_history"
 
 [ ! -d "$DATA/zsh/themes/pure" ] && git clone https://github.com/sindresorhus/pure.git "$DATA/zsh/themes/pure"
 [ ! -d "$DATA/zsh/plugins/fast-syntax-highlighting" ] && git clone https://github.com/zdharma-continuum/fast-syntax-highlighting "$DATA/zsh/plugins/fast-syntax-highlighting"
