@@ -1,4 +1,4 @@
-export PATH="$HOME/.local/bin/statusbar:$HOME/.local/bin/scripts:$PATH"
+export PATH="$HOME/.local/bin/statusbar:$HOME/.local/bin/scripts:$HOME/.local/bin/scripts/legacy:$PATH"
 
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$HOME/.cache"
@@ -13,10 +13,14 @@ export MANPAGER='nvim +Man!'
 export AUR_PAGER=lf
 export PASSWORD_STORE_DIR="$XDG_DATA_HOME/password-store"
 
-export TERMINAL=st
 export BROWSER=firefox
 export EDITOR=nvim
 export VISUAL="$EDITOR"
 
+export XDG_CURRENT_DESKTOP=sway
+export XDG_SESSION_TYPE=wayland
+
+pidof -s ssh-agent &>/dev/null || eval $(ssh-agent) >/dev/null
+
 # [ "$(tty)" = "/dev/tty1" ] && ! pidof -s Xorg >/dev/null 2>&1 && exec startx "$XINITRC"
-[ "$(tty)" = "/dev/tty1" ] && exec dbus-run-session dwl -s "$WINITRC & dwlb"
+[ "$(tty)" = "/dev/tty1" ] && exec dbus-run-session dwl -s "$WINITRC"

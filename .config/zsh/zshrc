@@ -21,7 +21,7 @@ alias ls="ls --color=auto"
 alias grep="grep --color"
 alias neofetch="fastfetch"
 alias yt-mp3="yt-dlp -x --audio-format mp3"
-alias c="copy"
+alias c="clipboard-copy"
 alias src="source $HOME/.zshrc"
 alias e="nvim"
 alias sc="lfcd $HOME/.local/bin/scripts"
@@ -82,9 +82,7 @@ stty -ixon
 bindkey -s '^o' '^ulfcd\n'
 bindkey -s '^f' '^ucd "$(dirname "$(fzf)")"\n'
 bindkey -s '^t' '^utmux\n'
-bindkey -s '^v' '^udmenu_openvpn\n'
-bindkey -s '^s' '^udmenu_ssh\n'
-bindkey -s '^G' 'dmenu_github\n'
+bindkey -s '^s' '^ufzf_ssh\n'
 bindkey '^[[P' delete-char
 
 # Colors

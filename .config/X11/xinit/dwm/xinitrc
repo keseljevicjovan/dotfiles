@@ -1,4 +1,8 @@
-feh --bg-scale --no-fehbg "$XDG_DATA_HOME/wallpapers/background.jpg"
+export XDG_CURRENT_DESKTOP=dwm
+export XDG_SESSION_TYPE=x11
+export TERMINAL=st
+
+xrandr --output HDMI-0 --primary --mode 1920x1080 --rate 144 --output DP-1 --mode 1920x1080 --rate 60 --left-of HDMI-0
 dunst &
 unclutter &
 picom &
@@ -8,6 +12,4 @@ xrdb "$XDG_CONFIG_HOME/X11/xresources/Xresources"
 slockbg &
 setxkbmap -option caps:escape
 
-while :; do
-  ssh-agent dwm
-done
+ssh-agent dwm
