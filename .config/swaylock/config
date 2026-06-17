@@ -1,0 +1,8 @@
+image=~/.cache/slock/slock.png
+indicator-y-position=856
+key-hl-color=ffffff
+ring-color=333333
+hide-keyboard-layout
+line-ver-color=000000
+ring-ver-color=000000
+inside-ver-color=000000
