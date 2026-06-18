@@ -12,6 +12,7 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 export MANPAGER='nvim +Man!'
 export AUR_PAGER=lf
 export PASSWORD_STORE_DIR="$XDG_DATA_HOME/password-store"
+export FZF_DEFAULT_OPTS="--reverse"
 
 export BROWSER=firefox
 export EDITOR=nvim
