@@ -1,38 +1,53 @@
-# Dotfiles (Wayland)
+# Dotfiles
 
-This repository contains my personal dotfiles and configuration for:
+My personal Linux configuration for X11 and Wayland.
 
-- X (xinit, xresources)
+## Included
+
+Common configuration:
+
 - dunst
 - git
 - lf
 - mpv
+- newsboat
 - picom
 - tmux
 - zathura
 - zsh
-- newsboat
 - ~~neovim~~ (moved to [init.lua](https://github.com/keseljevicjovan/init.lua))
 
-This branch also includes :
+X11:
+
+- xinit
+- xresources
+
+Wayland:
 
 - foot
 - hypr
 - mako
 - swayimg
 - swaylock
-- wayland
 
-There are also scripts used by status bar (dwmblocks for dwm, someblocks for dwl).
+Status bar scripts for `dwmblocks`/`someblocks` are also included.
 
-For window manager, terminal emulator and application launcher, see [suckless repo](https://github.com/keseljevicjovan/suckless.git).
+For my window managers, terminal emulator and launcher, see the [suckless repository](https://github.com/keseljevicjovan/suckless).
 
-## Installation
+## Deployment
 
-This script is intended for Arch-based distros and will make system-wide changes.
+The `deploy` script installs packages, creates the required directories, clones optional repositories, and symlinks the selected configuration into `~/.config`.
+
+It is intended for Arch-based distributions and performs system-wide changes.
 
 ```sh
 git clone https://github.com/keseljevicjovan/dotfiles.git
 cd dotfiles
-./deploy 
+./deploy
+```
+
+By default, `deploy` uses `setups/wayland.config`. A different setup can be specified:
+
+```sh
+./deploy setups/xorg.config
 ```

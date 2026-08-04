@@ -1,4 +1,4 @@
-swayimg.text.hide()
+swayimg.text.visible = false
 
 local v = swayimg.viewer
 local step = 50

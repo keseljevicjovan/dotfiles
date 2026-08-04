@@ -1,6 +1,7 @@
 dwlb &
 maco &
 someblocks -p | dwlb -status-stdin all &
+swaybg -i "$XDG_DATA_HOME/wallpapers/archlinux.png" &
 swayidle -w timeout 600 swaylock &
 wlr-randr --output DP-1 --mode 1920x1080@60.000 --pos 0,0
 wlr-randr --output HDMI-A-1 --mode 1920x1080@143.600 --pos 1920,0 

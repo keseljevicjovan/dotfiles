@@ -1,63 +1,86 @@
 #!/bin/sh
+
 set -eu
 
-sudo -v
-while true; do sudo -n true; sleep 60; done 2>/dev/null &
+DOTFILES="$(CDPATH= cd -- "$(dirname "$0")" && pwd)"
+CONFIG="${1:-setups/wayland.config}"
 
-DOTFILES="$(cd "$(dirname "$0")" && pwd)"
-CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}"
-SCRIPTS="$HOME/.local/bin"
-CACHE="${XDG_CACHE_HOME:-$HOME/.cache}"
-DATA="${XDG_DATA_HOME:-$HOME/.local/share}"
+command -v pacman >/dev/null || { echo "You can't deploy on non Arch-based distro"; exit 1; }
 
-(command -v pacman > /dev/null) || (echo "You can't deploy on non Arch-based distro" && exit 1)
+section=
+while IFS= read -r line || [ -n "$line" ]; do
+  case "$line" in
+    ""|\#*) ;;
+    \[*\]) section=${line#\[}; section=${section%\]} ;;
+    *) eval "$section=\"\${$section:+\${$section}
+    }$line\""
+  ;;  esac
+done < "$CONFIG"
 
-sudo pacman -Syu git zsh neovim tmux picom openssh lf firefox dunst scrot ueberzugpp zathura zathura-pdf-poppler feh mpv pacman-contrib pipewire-pulse imagemagick ffmpegthumbnailer playerctl pulsemixer unclutter xclip ttf-jetbrains-mono-nerd libnotify firefox-tridactyl gnome-themes-extra
+[ -z "${packages:-}" ] || sudo pacman -Syu --needed $packages
 
-git clone https://aur.archlinux.org/aurutils /tmp/aurutils && cd /tmp/aurutils && makepkg -si
-sudo mkdir -p /var/cache/pacman/aur && sudo chown "$USER" /var/cache/pacman/aur
-cd /var/cache/pacman/aur && repo-add aur.db.tar.gz
-grep -q "^\[aur\]" /etc/pacman.conf || printf "\n[aur]\nSigLevel = Optional TrustAll\nServer = file:///var/cache/pacman/aur\n" | sudo tee -a /etc/pacman.conf > /dev/null
+[ -z "${aur:-}" ] || {
+  command -v aur >/dev/null || {
+    [ -d /tmp/aurutils ] || git clone https://aur.archlinux.org/aurutils /tmp/aurutils
+    (
+      cd /tmp/aurutils
+      makepkg -si --noconfirm
+    )
+    sudo mkdir -p /var/cache/pacman/aur
+    sudo chown "$USER" /var/cache/pacman/aur
+    (
+      cd /var/cache/pacman/aur
+      repo-add aur.db.tar.gz
+    )
+    grep -q '^\[aur\]' /etc/pacman.conf ||
+      printf '\n[aur]\nSigLevel = Optional TrustAll\nServer = file:///var/cache/pacman/aur\n' |
+      sudo tee -a /etc/pacman.conf >/dev/null
+  }
 
-mkdir -p "$CONFIG" "$SCRIPTS" "$CONFIG/dircolors"
+  export AUR_PAGER=true
+  aur sync $aur
+  sudo pacman -S --needed $aur
+}
 
-for i in "$DOTFILES/.config/"*; do
-  ln -sf "$i" "$CONFIG/"
-done
-
-for i in "$CONFIG/mozilla/firefox/"*.default*; do
-  for k in "$DOTFILES/browser/"*; do 
-    ln -sf $k $i
+[ -z "${git:-}" ] || {
+  printf '%b\n' "$git" |
+  while read -r repo dir; do
+    [ -d "$HOME/$dir" ] || git clone "$repo" "$HOME/$dir"
   done
+}
+
+[ -z "${dirs:-}" ] || {
+  printf '%b\n' "$dirs" |
+  while read -r dir; do
+    mkdir -p "$HOME/$dir"
+  done
+}
+
+mkdir -p "$HOME/.config"
+
+case "${session:-}" in
+  wayland|xorg) dir="$DOTFILES/config/$session" ;;
+  *) dir= ;;
+esac
+
+for path in "$DOTFILES/config/common/"* "$dir"/*; do
+  [ -e "$path" ] || continue
+  ln -sfn "$path" "$HOME/.config/$(basename "$path")"
 done
 
-for i in "$DOTFILES/.local/bin/"*; do
-    ln -sf "$i" "$SCRIPTS/"
-done
+[ -z "${symlinks:-}" ] || {
+  printf '%b\n' "$symlinks" |
+  while read -r src dst; do
+    mkdir -p "$(dirname "$HOME/$dst")"
+    ln -sf "$DOTFILES/$src" "$HOME/$dst"
+  done
+}
 
-[ ! -f "$CONFIG/dircolors/dircolors" ] && dircolors -p > "$CONFIG/dircolors/dircolors"
+[ -z "${dircolors:-}" ] || dircolors -p > "$HOME/$dircolors"
+[ -z "${shell:-}" ] || [ "$SHELL" = "$shell" ] || chsh -s "$shell"
 
-mkdir -p "$CACHE"/{zsh,tmux,newsboat,slock,nvim} "$DATA"/{zsh/{plugins,themes},tmux/plugins} "$HOME/pictures/screenshots"
-touch "$CACHE/clipboard_history"
-
-[ ! -d "$DATA/zsh/themes/pure" ] && git clone https://github.com/sindresorhus/pure.git "$DATA/zsh/themes/pure"
-[ ! -d "$DATA/zsh/plugins/fast-syntax-highlighting" ] && git clone https://github.com/zdharma-continuum/fast-syntax-highlighting "$DATA/zsh/plugins/fast-syntax-highlighting"
-[ ! -d "$DATA/zsh/plugins/zsh-autosuggestions" ] && git clone https://github.com/zsh-users/zsh-autosuggestions.git "$DATA/zsh/plugins/zsh-autosuggestions"
-[ ! -d "$DATA/tmux/plugins/tpm" ] && git clone https://github.com/tmux-plugins/tpm "$DATA/tmux/plugins/tpm"
-
-ln -sf "$CONFIG/zsh/zshrc" "$HOME/.zshrc"
-ln -sf "$CONFIG/zsh/zprofile" "$HOME/.zprofile"
-
-[ "$(basename "$SHELL")" != "zsh" ] && chsh -s "$(command -v zsh)"
-
-[ ! -d "$CONFIG/nvim" ] && git clone https://github.com/keseljevicjovan/init.lua "$CONFIG/nvim"
-
-export AUR_PAGER=nvim
-aur sync xkblayout-state-git
-sudo pacman -Syu xkblayout-state-git libx11 libxft libxinerama libxrandr libxext libxrender fontconfig freetype2 libexif imlib2 xorg-server xorg-xinit
-
-[ ! -d "$CONFIG/suckless" ] && git clone https://github.com/keseljevicjovan/suckless "$CONFIG/suckless"
-sed -i "s|jovan|$(whoami)|g" "$CONFIG/suckless/slock/config.h"
-for i in "$CONFIG/suckless"/*; do [ -d "$i" ] && [ -f "$i/Makefile" ] && (cd "$i" && sudo make install clean); done
-
-echo 'Deploy successful! Log out to start using zsh'
+[ -z "${firefox:-}" ] || {
+  for profile in "$HOME"/.config/mozilla/firefox/*.default*; do
+    [ -d "$profile" ] && ln -sf "$DOTFILES/$firefox/"* "$profile/"
+  done
+}

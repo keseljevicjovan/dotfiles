@@ -1,0 +1,4 @@
+#!/bin/sh
+
+sel=$(grep -E '^Host ' ~/.ssh/hosts/* | awk '{print $2}' | grep -v '^\*$' | fzf --prompt 'ssh to: ')
+[ -n "$sel" ] && ssh "$sel"
