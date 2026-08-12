@@ -4,14 +4,12 @@ My personal Linux configuration for X11 and Wayland.
 
 ## Included
 
-Common configuration:
+Common:
 
-- dunst
 - git
 - lf
 - mpv
 - newsboat
-- picom
 - tmux
 - zathura
 - zsh
@@ -21,6 +19,8 @@ X11:
 
 - xinit
 - xresources
+- dunst
+- picom
 
 Wayland:
 
@@ -36,8 +36,7 @@ For my window managers, terminal emulator and launcher, see the [suckless reposi
 
 ## Deployment
 
-The `deploy` script installs packages, creates the required directories, clones optional repositories, and symlinks the selected configuration into `~/.config`.
-
+The `deploy` script installs packages, creates the required directories, clones repositories, and symlinks the selected configuration into `~/.config`.
 It is intended for Arch-based distributions and performs system-wide changes.
 
 ```sh
@@ -51,3 +50,10 @@ By default, `deploy` uses `setups/wayland.config`. A different setup can be spec
 ```sh
 ./deploy setups/xorg.config
 ```
+
+# Updates
+
+To update the dotfiles, simply pull the latest changes.
+
+Since the files are symlinked, changes to existing files are applied automatically.
+If new directories or packages have been added, run the deploy script again.

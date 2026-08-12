@@ -6,5 +6,5 @@ chosen=$(cat ~/.local/share/emoji/* | mew -i | sed "s/ .*//")
 
 [ -n "$1" ] && xdotool type "$chosen" || {
 	printf "%s" "$chosen" | wl-copy
-	dunstify "'$chosen' copied to clipboard."
+	notify-send "'$chosen' copied to clipboard."
 }

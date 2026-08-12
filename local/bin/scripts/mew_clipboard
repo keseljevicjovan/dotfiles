@@ -7,13 +7,13 @@ case "$1" in
   select)
     sel=$(tac "$HIST" | mew -p "Clipboard history:") &&
     printf '%s' "$sel" | sed "s/$SEP/\\n/g" | wl-copy &&
-    dunstify "Copied to clipboard" "$sel"
+    notify-send "Copied to clipboard" "$sel"
     ;;
   save)
     clip=$(wl-paste) &&
     [ -n "$clip" ] &&
     esc=$(printf '%s' "$clip" | sed ":a;N;\$!ba;s/\\n/$SEP/g") &&
     grep -Fxq "$esc" "$HIST" || echo "$esc" >> "$HIST" &&
-    dunstify "Saved to clipboard" "$clip"
+    notify-send "Saved to clipboard" "$clip"
     ;;
 esac

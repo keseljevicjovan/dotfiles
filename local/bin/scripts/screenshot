@@ -20,4 +20,4 @@ else
   [ -f "$FILENAME" ] && xclip -selection clipboard -t image/png -i "$FILENAME"
 fi
 
-[ -f "$FILENAME" ] && dunstify -i "$FILENAME" "Screenshot saved" "$TIMESTAMP" || dunstify "Screenshot failed"
+[ -f "$FILENAME" ] && notify-send -i "$FILENAME" "Screenshot saved" "$TIMESTAMP" || notify-send "Screenshot failed"

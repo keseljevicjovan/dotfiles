@@ -1,4 +1,4 @@
-image=~/.cache/slock/slock.png
+image=~/.local/share/slock/slock.png
 indicator-y-position=856
 key-hl-color=ffffff
 ring-color=333333
