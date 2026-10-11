@@ -24,4 +24,5 @@ export XDG_SESSION_TYPE=wayland
 pidof -s ssh-agent &>/dev/null || eval $(ssh-agent) >/dev/null
 
 # [ "$(tty)" = "/dev/tty1" ] && ! pidof -s Xorg >/dev/null 2>&1 && exec startx "$XINITRC"
-[ "$(tty)" = "/dev/tty1" ] && exec dbus-run-session dwl -s "$WINITRC"
+# [ "$(tty)" = "/dev/tty1" ] && exec dbus-run-session dwl -s "$WINITRC"
+  [ "$(tty)" = "/dev/tty1" ] && exec dwl -s "$WINITRC"

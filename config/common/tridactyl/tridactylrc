@@ -7,3 +7,5 @@ bind <A-k> tabprev
 bind <A-Tab> tab #
 
 set completionfuzziness 1
+
+set modeindicator false

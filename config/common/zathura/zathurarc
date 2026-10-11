@@ -1,15 +1,15 @@
-set default-fg               rgba(230,230,230,1)
-set default-bg               rgba(20,20,20,1)
+set default-fg               rgba(240,240,240,1)
+set default-bg               rgba(0,0,0,1)
 
-set completion-bg            rgba(40,40,40,1)
-set completion-fg            rgba(220,220,220,1)
-set completion-highlight-bg  rgba(220,220,220,1)
-set completion-highlight-fg  rgba(40,40,40,1)
+set completion-bg            rgba(20,20,20,1)
+set completion-fg            rgba(235,235,235,1)
+set completion-highlight-bg  rgba(235,235,235,1)
+set completion-highlight-fg  rgba(0,0,0,1)
 
-set statusbar-bg             rgba(20,20,20,1)
-set statusbar-fg             rgba(220,220,220,1)
+set statusbar-bg             rgba(0,0,0,1)
+set statusbar-fg             rgba(235,235,235,1)
 
-set recolor-lightcolor       rgba(20,20,20,1)
-set recolor-darkcolor        rgba(230,230,230,1)
+set recolor-lightcolor       rgba(0,0,0,1)
+set recolor-darkcolor        rgba(245,245,245,1)
 
 set recolor                  "true"

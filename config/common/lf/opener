@@ -3,10 +3,6 @@
 file="$1"
 mime=$(file --mime-type -Lb "$file")
 
-open_zathura(){ 
-    command -v "zathura" > /dev/null 2>&1 && zathura "$file" && pkill zathura
-}
-
 open_image(){ 
     if [ -n "$WAYLAND_DISPLAY" ]; then
         exec swayimg "$file"
@@ -25,6 +21,6 @@ case "$mime" in
     image/*)    open_image ;;
     audio/*)    exec mpv "$file" ;;
     video/*)    exec mpv "$file" ;;
-    application/pdf) open_zathura ;;
+    application/pdf) zathura "$file" ;;
     *)          exec xdg-open "$file" ;;
 esac

@@ -1,15 +1,72 @@
-* {
-  border-radius: 0px !important;
-  box-shadow: none !important;
-}
-
 :root {
+  --arrowpanel-background: rgb(42, 42, 42) !important;
+  --arrowpanel-color: rgb(255, 255, 255) !important;
+  --arrowpanel-border-color: rgb(0, 0, 0) !important;
+  
   --tridactyl-bg: #000000 !important;
   --tridactyl-fg: #ffffff !important;
   --tridactyl-cmdl-bg: #1a1a1a !important;
   --tridactyl-cmdl-fg: #e0e0e0 !important;
   --tridactyl-cmplt-bg: #1a1a1a !important;
   --tridactyl-cmplt-fg: #e0e0e0 !important;
+}
+
+#navigator-toolbox {
+  background-color: rgb(0, 0, 0) !important;
+}
+
+#urlbar-background, #searchbar {
+  background-color: rgb(0, 0, 0) !important;
+  color: rgb(255, 255, 255) !important;
+  border: 1px solid rgb(32, 32, 32) !important;
+}
+
+#nav-bar {
+  background-color: rgb(32, 32, 32) !important;
+  color: rgb(255, 255, 255) !important;
+}
+
+.tabbrowser-tab[selected="true"] .tab-background {
+  background-color: rgb(42, 42, 42) !important;
+}
+
+.tabbrowser-tab .tab-label {
+  color: rgb(255, 255, 255) !important;
+}
+
+#tabbrowser-tabs {
+  border-bottom: 1px solid rgb(0, 0, 0) !important;
+}
+
+
+#TabsToolbar { display: none !important; }
+#sidebar-box #sidebar-header { display: none !important; }
+
+* { 
+  border-radius: 0px !important; 
+  box-shadow: none !important;
+}
+
+#tabbrowser-tabs {
+  counter-reset: tab-counter;
+}
+
+.tabbrowser-tab {
+  counter-increment: tab-counter;
+  position: relative;
+}
+
+.tabbrowser-tab::after {
+  content: counter(tab-counter);
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
+  font-size: 10px;
+  color: white;
+  background: rgba(0,0,0,0.6);
+  padding: 1px 4px;
+  border-radius: 3px;
+  pointer-events: none;
 }
 
 :root #cmdline_iframe {
@@ -41,3 +98,4 @@
     background: #e0e0e0 !important;
     color: #1a1a1a !important;
 }
+
